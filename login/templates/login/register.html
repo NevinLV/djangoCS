@@ -1,0 +1,21 @@
+{% extends 'login/base.html' %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <div class="block" id="inputData">
+        <p class="title">ВХОД</p>
+
+        <form method="POST" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="bthSection">
+                <button id=forgPass>Забыли пароль?</button>
+                <button type="submit" id=go>ВОЙТИ</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="block" id="registerBtn">
+        <p>Ещё не с нами?</p>
+    </div>
+{% endblock %}

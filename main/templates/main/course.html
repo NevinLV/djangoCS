@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
+    <link rel="stylesheet" href=" {%  static 'main/css/courses.css'%}">
+{% endblock %}
+
+{% block content %}
+        <div class="Listing">
+
+            {% for el in course%}
+                <div class="card block" id="{{ el.id }}">
+                <div class="lable">
+                    <div class="text">
+                        <div class="title">{{ el.title }}</div>
+                        <div class="autor">Автор: {{ el.author }}</div>
+                    </div>
+                    <div class="img">
+
+                    </div>
+                </div>
+
+                <div class="desk">{{ el.description }}</div>
+                <button class="go"
+                onclick="window.location.href = '#'"
+                >Начать курс</button>
+            </div>
+
+            {% endfor %}
+        </div>
+{% endblock %}

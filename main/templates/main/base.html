@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    {% block style %}{% endblock %}
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script src="{%  static 'main/js/index.js' %}"></script>
+    <script src="{%  static 'landing/js/init.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div id="logo"><span id="firstWord">COURSE</span> SPACE</div>
+        <div id="user">
+            <div id="avatar"></div>
+            <div id="name">{{ user }}</div>
+        </div>
+    </header>
+
+    <main>
+        <h1>ПОИСК</h1>
+        <div class="search block">
+
+            <div id="input">
+                <div class="entry">
+                    <input type="text" id="name" placeholder="Введите название курса">
+                    <button id="filtersBtn"
+                    onclick=Filter()>Фильтры</button>
+                    <button class="find">Найти</button>
+                </div>
+            </div>
+
+            <div id="filters">
+
+                <div class="entry">
+                    <input type="text" id="autor" placeholder="Автор">
+                </div>
+
+                <div class="entry">
+                    <select id="category">
+                        <option>Категория</option>
+                        <option>IT</option>
+                        <option>Математика</option>
+                        <option>Физика</option>
+                        <option>Химия</option>
+                        <option>Здоровье</option>
+                        <option>Языки</option>
+                        <option>Искусство</option>
+                        <option>Кулинария</option>
+                        <option>Прочее</option>
+                    </select>
+                </div>
+
+                <div class="entry">
+                    <select id="day">
+                        <option>День</option>
+                        <option>1</option>
+                    </select>
+                    <select id="month">
+                        <option>Месяц</option>
+                        <option>Март</option>
+                    </select>
+                    <select id="year">
+                        <option>Год</option>
+                        <option>2001</option>
+                    </select>
+                </div>
+
+                <div class="entry">
+                    <input type="text" id="tegs" placeholder="Введите теги">
+                </div>
+            </div>
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+<script src="/scripts/init.js"></script>
+</html>

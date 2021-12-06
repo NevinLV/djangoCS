@@ -1,0 +1,54 @@
+@import url(../../main/css/design-tokens/colors.css);
+@import url(../../main/css/design-tokens/elements.css);
+@import url(../../main/css/design-tokens/sizes.css);
+
+
+body{
+    background-color: var(--black);
+    background-image: url(../img/4.png);
+    background-repeat: no-repeat;
+    font-family: 'Century Gothic';
+}
+
+.block{
+    background: rgba(170, 170, 170, 0.4);
+    border-radius: 6px;
+
+    margin: 10px auto;
+    padding: 20px;
+
+    width: 300px;
+    color: white;
+}
+
+input{
+    width: 270px;
+}
+.title{
+    text-align: center;
+    font-size: 16pt;
+}
+
+.sTitle{
+    margin-bottom: 0px;
+}
+
+button{
+    margin: 10px 0px;
+}
+#go{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#forgPass{
+    width: 220px;
+}
+#bthSection{
+    margin-top: 30px;
+}
+
+#registerBtn p{
+    font-variant-caps: all-small-caps;
+    font-size: 14pt;
+    margin-top: 0px;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'landing/css/landing.css' %}">
+    <meta charset="UTF-8">
+    <title>Course Space</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+    <script src="{%  static 'landing/js/index.js' %}"></script>
+</head>
+<body>
+   <div class="Section" id="section1">
+       <div id="btnSection">
+            <button 
+                id="logIn"
+                onclick="window.location.href = 'login';"
+            >ВХОД</button>
+            <button id="signIn" onclick="window.location.href = '{% url 'registration' %}';">РЕГИСТРАЦИЯ</button>
+       </div>
+       <div id="logo">
+            <div id="C">
+                СOURSE
+            </div>
+            <div id="S">[SPACE] </div>
+       </div>
+       <div id="btnSpace" class="demo">
+            <a href="#section2"><span></span>заполни свои пробелы</a>
+        </div>
+   </div>
+
+   <div class="Section" id="section2">
+       <p id="w1">
+            <b>Course Space -</b> </br> 
+            библиотека учебных курсов и самых креативных названий.
+       </p>
+       <p id="w2">
+            Мы твои проводники в мир знаний.
+       </p>
+    </div>
+    
+    <div class="Section" id="section3">
+        <img src="{%  static 'landing/img/3.png' %}" id="img3">
+        <p id="w1">
+            Ты ведь хочешь <b>изменить</b> свою жизнь?
+       </p>
+       <p id="w2">
+            Только представь, сколько новых возможностей тебе откроется с новыми знаниями...
+       </p>
+       <p id="w2">
+        И мы поможем тебе найти тот самый курс, который <b>изменит</b> твою жизнь... 
+       </p>
+    </div>
+
+    <div class="Section" id="section4">
+        <img src="{%  static 'landing/img/2.png' %}" id="img2">
+        <p id="w1">
+            Всё начинается с <b>интереса</b>.
+       </p>
+       <p id="w2">
+            Мы учтём твои предпочтения.       
+        </p>
+       <p id="w2">
+            Просто укажи интересующие тебя темы и мы подберём <b>курс твоей мечты</b>.
+        </p>
+    </div>
+
+    <div class="Section" id="section5">
+       <p id="w4">
+           <b>Начни покорять бескрайний космос знаний прямо сейчас!</b>
+       </p>
+       <div id="button-design">
+            <a onclick="window.location.href = 'main';" class="button2 b-blue rot-135">ПОЕХАЛИ!</a>
+        </div>
+       <p id="w3">
+        <br>
+            Не бойся, это бесплатно. </br>
+            Жми на кнопку.
+       </p>
+       <img src="{%  static 'landing/img/5.png' %}" id="img5">
+    </div>
+
+    <div id="board">
+        <div class="point" id="p1" onclick="window.location.href = '#section2';">
+            <div id="name">КТО ВЫ?</div>
+            <div class="pointBtn" id="pointBtn1"></div>
+        </div>
+
+        <div class="point" id="p2" onclick="window.location.href = '#section3';">
+            <div id="name">ЗАЧЕМ?</div>
+            <div class="pointBtn" id="pointBtn2"></div>
+        </div>
+
+        <div class="point" id="p3" onclick="window.location.href = '#section4';">
+            <div id="name">КАК?</div>
+            <div class="pointBtn" id="pointBtn3"></div>
+        </div>
+
+        <div class="point" id="p4" onclick="window.location.href = '#section5';">
+            <div id="name">НАЧНЁМ!</div>
+            <div class="pointBtn" id="pointBtn4"></div>
+        </div>
+   </div>
+   <div id="lines">
+        <div class="line" id="l1"></div>
+        <div class="line" id="l2"></div>
+        <div class="line" id="l3"></div>
+   </div>
+</body>
+</html>

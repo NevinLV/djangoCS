@@ -1,0 +1,38 @@
+@import url(sizes.css);
+
+body{
+    margin: var(--margin-body);
+    padding-top: var(--paddingTop-body);
+    font-family:'Century Gothic';
+    background-color: var(--white);
+}
+
+header{
+    width: 100%;
+    height: var(--height-header);
+
+    display: flex;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    background-color: var(--black);
+    color: var(--gray);
+
+    z-index: 999999;
+}
+
+#user{
+    position: absolute;
+    right: 60px;
+    top: calc(50% - 18px);
+    
+    font-size: var(--p-size);
+}
+#logo{
+    position: absolute;
+    left: 60px;
+    top: calc(50% - 18px);
+    font-size: var(--h1-size);
+}

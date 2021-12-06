@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+{% block title %}Главная{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
+{% endblock %}
+
+{% block content %}
+           <h1>КАТЕГОРИИ</h1>
+        <div class="List Min" id=Categories>
+            {% for cat in categories %}
+                <div class="card block small" id="c{{ cat.id }}"
+                onclick="window.location.href = '{% url 'category' cat.pk %}'">
+                    {{ cat.title }}
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <h1>ПОПУЛЯРНЫЕ КУРСЫ</h1>
+        <div class="List" id="popular">
+            {% for el in courses%}
+                <div class="card block" id="{{ el.id }}">
+                <div class="lable">
+                    <div class="text">
+                        <div class="title">{{ el.title|truncatechars:32 }}</div>
+                        <div class="autor">Автор: {{ el.author }}</div>
+                    </div>
+{#                    <div class="img">#}
+{##}
+{#                    </div>#}
+                </div>
+                    <div class="desk">{{el.description|truncatechars:32}}</div>
+                <div class="categor">Категория: {{ el.category }}</div>
+                <div class="tags">Теги: </br>
+{#                    {% for teg in el. %}#}
+{#                    {% endfor %}#}
+                    <div id="t1">
+                        Тег #1
+                    </div>
+                    <div id="t2">
+                        Тег #2
+                    </div>
+                    <div id="t3">
+                        Тег #3
+                    </div>
+                    <div id="t4">
+                        Тег #4
+                    </div>
+                    <div id="t5">
+                        Тег #5
+                    </div>
+                    <div id="t6">
+                        Тег #6
+                    </div>
+                </div>
+                <div class="date">{{ el.date }}</div>
+                <button class="go"
+                onclick="window.location.href = '{% url 'course' el.pk %}'"
+                >ПЕРЕЙТИ</button>
+            </div>
+            {% endfor %}
+        </div>
+
+{#        <h1>РЕКОМЕНДОВАННЫЕ КУРСЫ</h1>#}
+{#        <div class="List" id="rec">#}
+{#            {% for el in courses%}#}
+{#                <div class="card block" id="{{ el.id }}">#}
+{#                <div class="lable">#}
+{#                    <div class="text">#}
+{#                        <div class="title">{{ el.title }}</div>#}
+{#                        <div class="autor">Автор: {{ el.author }}</div>#}
+{#                    </div>#}
+{#                    <div class="img">#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="desk">{{ el.description }}:</div>#}
+{#                <div class="categor">Категория: {{ el.category }}</div>#}
+{#                <div class="tags">Теги: </br>#}
+{#                    {% for teg in el. %}#}
+{#                    {% endfor %}#}
+{#                    <div id="t1">#}
+{#                        Тег #1#}
+{#                    </div>#}
+{#                    <div id="t2">#}
+{#                        Тег #2#}
+{#                    </div>#}
+{#                    <div id="t3">#}
+{#                        Тег #3#}
+{#                    </div>#}
+{#                    <div id="t4">#}
+{#                        Тег #4#}
+{#                    </div>#}
+{#                    <div id="t5">#}
+{#                        Тег #5#}
+{#                    </div>#}
+{#                    <div id="t6">#}
+{#                        Тег #6#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="date">{{ el.date }}</div>#}
+{#                <button class="go"#}
+{#                onclick="window.location.href = 'course.html'"#}
+{#                >ПЕРЕЙТИ</button>#}
+{#            </div>#}
+{#            {% endfor %}#}
+        </div>
+{% endblock %}
+
