@@ -9,13 +9,9 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div id="bthSection">
-                <button id=forgPass>Забыли пароль?</button>
-                <button type="submit" id=go>ВОЙТИ</button>
+                <button type="submit" id=go>Зарегистрироваться</button>
             </div>
         </form>
     </div>
 
-    <div class="block" id="registerBtn">
-        <p>Ещё не с нами?</p>
-    </div>
 {% endblock %}

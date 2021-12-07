@@ -173,8 +173,8 @@ p{
         }
 
     .small{
-            width: var(--small-card-width);
-            height: var(--small-card-hight);   
+            width: var(--small-card-wfdgidth);
+            height: var(--small-card-hight);
             font-weight: lighter;
             font-size: 20px;
             border-radius: 10px;

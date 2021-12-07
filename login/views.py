@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from login.forms import RegisterUserForm
 from main.models import Users
 
 
@@ -27,15 +28,12 @@ class LoginUser(LoginView):
 
 
 class RegisterUser(CreateView):
-    form_class = UserCreationForm
+    form_class = RegisterUserForm
     template_name = 'login/register.html'
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('login')
 
     @csrf_exempt
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return dict(list(context.items()))
 
-    @csrf_exempt
-    def get_success_url(self):
-        return reverse_lazy('main')

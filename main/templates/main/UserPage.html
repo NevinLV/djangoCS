@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
+    <link rel="stylesheet" href=" {%  static 'main/css/courses.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class="card block">
+        <h1>{{ title }}</h1>
+    </div>
+
+{% endblock %}

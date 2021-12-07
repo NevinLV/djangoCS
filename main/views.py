@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Courses, Categories
+from django.contrib.auth.models import User
 
 def main(request):
     categories = Categories.objects.all()
@@ -34,4 +35,14 @@ def show_category(request, category_id):
     }
 
     return render(request, 'main/courses.html', context=context)
+
+def show_user_page(request, user_id):
+    user = User.objects.filter(id=user_id)
+
+    context = {
+        'title': user[0],
+    }
+
+    return render(request, 'main/userpage.html', context=context)
+
 
