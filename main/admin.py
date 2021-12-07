@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Authors, Profile
+from .models import Authors
 from .models import Categories
 from .models import CourseTag
 from .models import CourseUser
@@ -21,7 +21,7 @@ admin.site.register(Img)
 admin.site.register(Users)
 admin.site.register(Tags)
 admin.site.register(Video)
-admin.site.register(Profile)
+
 
 
 # class UserProfileAdmin(admin.ModelAdmin):
