@@ -31,8 +31,18 @@ header{
     font-size: var(--p-size);
 }
 #logo{
+    color: white;
     position: absolute;
-    left: 60px;
+    left: 100px;
     top: calc(50% - 18px);
     font-size: var(--h1-size);
+}
+
+#logo_img{
+    position: absolute;
+    top: 5px;
+    left: -40px;
+    width: 30px;
+    height: auto;
+    transform: rotate(-8.19deg);
 }
