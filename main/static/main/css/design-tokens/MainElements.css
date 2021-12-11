@@ -4,12 +4,23 @@ body{
     margin: var(--margin-body);
     padding-top: var(--paddingTop-body);
     font-family:'Century Gothic';
-    background-color: var(--white);
+    /*background-color: var(--white);*/
+    background-color: var(--black);
+
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+main{
+    display: flex;
 }
 
 header{
     width: 100%;
     height: var(--height-header);
+    padding-top: 15px;
 
     display: flex;
 
@@ -27,22 +38,38 @@ header{
     position: absolute;
     right: 60px;
     top: calc(50% - 18px);
-    
+    display: flex;
     font-size: var(--p-size);
+    color: var(--white);
+}
+
+#avatar{
+    padding-right: 10px;
+}
+#username{
+    padding-top: 4px;
+}
+#exit{
+    padding-left: 30px;
 }
 #logo{
+    margin-left: 100px;
+    margin-top: 20px;
     color: white;
-    position: absolute;
-    left: 100px;
-    top: calc(50% - 18px);
+    display: flex;
+    /*position: absolute;*/
+    /*left: 100px;*/
+    /*top: calc(50% - 18px);*/
     font-size: var(--h1-size);
 }
 
 #logo_img{
-    position: absolute;
-    top: 5px;
-    left: -40px;
+    /*position: absolute;*/
+    /*top: 5px;*/
+    /*left: -40px;*/
+    padding-top: 5px;
+    margin-right: 10px;
     width: 30px;
-    height: auto;
+    height: 30px;
     transform: rotate(-8.19deg);
 }

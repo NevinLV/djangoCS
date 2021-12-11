@@ -4,12 +4,11 @@
 {% block style %}
     {% load static %}
     <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
-    <link rel="stylesheet" href=" {%  static 'main/css/courses.css'%}">
 {% endblock %}
 
 {% block content %}
-        <div class="Listing">
-
+        <div class="List">
+            <h1> </h1>
             {% for el in course%}
                 <div class="card block" id="{{ el.id }}">
                 <div class="lable">

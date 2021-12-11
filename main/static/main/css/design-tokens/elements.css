@@ -1,18 +1,23 @@
 @import url(sizes.css);
 
+#words{
+    font-size: 20pt;
+}
 /* Поля ввода */
 input{
     font-size: var(--p-size);
-    background-color: var(--white);
+    background-color: var(--lblack);
     border-radius: 5px;
     border: none;
     padding: 10px 15px;
-    width: 100%;
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 400px;
     display: inline-block;
-    
+    color: var(--gray);
 }
 input:focus{
-    background-color: var(--white);
+    background-color: var(--lblack);
     outline: 0;
 }
 
@@ -21,10 +26,9 @@ input:focus{
 select{
     color: gray;
     font-size: var(--p-size);
-    background-color: var(--white);
+    background-color: var(--lblack);
     border-radius: 5px;
     border: none;
-    padding: 10px 15px;
 }
 
 
@@ -48,10 +52,12 @@ button:active {
     background-color: black;
 }
 
-.search{
-    -webkit-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
-    -moz-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
-    box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+.search.block{
+    background-color: var(--black);
+    margin-left: 20px;
+    /*-webkit-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);*/
+    /*-moz-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);*/
+    /*box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);*/
 }
 
 /* Заголовки */
@@ -59,6 +65,7 @@ h1{
     font-weight: 100;
     font-size: var(--h1-size);
     padding-top: 20px;
+    color: var(--gray);
 }
 
 /* Абзацы */
@@ -72,10 +79,22 @@ p{
 
 /* Горизонтальные листы */
 .List{
-    display: inline-flex;
-    overflow-x: scroll; 
+    display: inline;
+    /*overflow-x: scroll; */
     width: 100%;
     padding: 0px 20px 20px 20px;
+}
+
+.List.Min{
+    width: 300px;
+    height: auto;
+    color: white;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.List.Min h1{
+    color: white;
 }
 /* .List::-webkit-scrollbar {
     width: 0;
@@ -84,8 +103,12 @@ p{
 
 /* Блоки информации*/
 .block{
-    background-color: white;
+    /*background-color: white;*/
+    background-color: var(--white);
     border-radius: 5px;
+    /*border-color: var(--white);*/
+    /*border-style: solid;*/
+    /*border-width: 1px;*/
     margin-right: 10px;
     padding: 20px;
     margin-bottom: 10px;
@@ -97,8 +120,9 @@ p{
 
 /* Карты */
 .card{
-    transition: 0.3s;
-    width: var(--card-width);
+    transition: 0.2s;
+    width: calc(100% - 50px);
+    display: block;
     height: var(--card-height);    
     position: relative;
     flex: none;
@@ -149,7 +173,7 @@ p{
                     margin: 3px 0px;
                     padding-left: 10px;
                     padding-right: 10px;
-                    color:white;
+                    color:var(--gray);
                     border-radius: 4px;
                     text-transform: uppercase;
                     display: inline-flex;
@@ -173,95 +197,78 @@ p{
         }
 
     .small{
-            width: var(--small-card-wfdgidth);
-            height: var(--small-card-hight);
+            width: 300px;
+            height: 10px;
             font-weight: lighter;
             font-size: 20px;
-            border-radius: 10px;
-           
+            border-radius: 5px;
+            background-color: var(--black);
+        color: var(--lgray);
     }
 
 .card:hover{
     background-color: #f8f8f8;
 }
 
-    #c1{
-        background-color: var(--c1);
-        color: var(--tc1);
-        transition: 0.3s;
-    }
-    #c1:hover{
-        background-color: var(--ch1);
-    }
+#Categories{
+    flex: none;
+}
 
-    #c2{
-        background-color: var(--c2);
-        color: var(--tc2);
-         transition: 0.3s;
-    }
-    #c2:hover{
-        background-color: var(--ch2);
-    }
+.pointBtn{
+    transition: 0.3s;
+    margin-top: 2.5px;
+    margin-left: 15px;
+    width: 10px;
+    height: 10px;
+    background: var(--black);
+    border-radius: 50%;
+    border-color: #ffffff;
+    border-width: 2px;
+    border-style: solid;
+    margin-right: 10px;
+    z-index: 900;
+}
 
-    #c3{
-        background-color: var(--c3);
-        color: var(--tc3);
-         transition: 0.3s;
-    }
-    #c3:hover{
-        background-color: var(--ch3);
-    }
+.nav{
+    font-size: 18px;
+    margin-top: 10px;
+    color: white;
+    display: flex;
+    transition: 0.3s;
+    width: calc(100% - 50px);
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+    box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+}
 
-    #c4{
-        background-color: var(--c4);
-        color: var(--tc4);
-         transition: 0.3s;
-    }
-    #c4:hover{
-        background-color: var(--ch4);
-    }
+.nav:hover .pointBtn{
+    background: var(--white);
+}
 
-    #c5{
-        background-color: var(--c5);
-        color: var(--tc5);
-         transition: 0.3s;
-    }
-    #c5:hover{
-        background-color: var(--ch5);
-    }
+.nav:hover {
+    text-decoration: underline;
+}
 
-    #c6{
-        background-color: var(--c6);
-        color: var(--tc6);
-         transition: 0.3s;
-    }
-    #c6:hover{
-        background-color: var(--ch6);
-    }
+.pointBtnSelect{
+    background: var(--white);
+}
+.courseTitleSelect{
+    text-decoration: underline;
+}
 
-    #c7{
-        background-color: var(--c7);
-        color: var(--tc7);
-         transition: 0.3s;
-    }
-    #c7:hover{
-        background-color: var(--ch7);
-    }
+.courseTitle{
+    margin-left: 10px;
+}
 
-    #c8{
-        background-color: var(--c8);
-        color: var(--tc8);
-         transition: 0.3s;
-    }
-    #c8:hover{
-        background-color: var(--ch8);
-    }
+.cline{
+    width: 2px;
+    height: 280px;
+    background-color: #fff;
+}
 
-    #c9{
-        background-color: var(--c9);
-        color: var(--tc9);
-         transition: 0.3s;
-    }
-    #c9:hover{
-        background-color: var(--ch9);
-    }
+#сl1{
+    position: absolute;
+    top: 237px;
+    left: calc(5vw + 41px);
+}
+

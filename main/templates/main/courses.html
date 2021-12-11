@@ -4,17 +4,14 @@
 {% block style %}
     {% load static %}
     <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
-    <link rel="stylesheet" href=" {%  static 'main/css/courses.css'%}">
 {% endblock %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-
     {% if courses %}
-        <div class="Listing">
-
+        <div class="List">
+            <h1>Курсы по направлению "{{ title }}"</h1>
             {% for el in courses%}
-            <div class="card block" id="{{ el.id }}">
+            <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'">
                 <div class="lable">
                     <div class="text">
                         <div class="title">{{ el.title }}</div>
@@ -49,13 +46,10 @@
                     </div>
                 </div>
                 <div class="date">{{ el.date }}</div>
-                <button class="go"
-                onclick="window.location.href = '{% url 'course' el.pk %}'"
-                >ПЕРЕЙТИ</button>
             </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>Курсов данной категории ещё нет.</p>
+        <h1>Курсов по категории "{{ title }}" ещё нет.</h1>
     {% endif %}
 {% endblock %}

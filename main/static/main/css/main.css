@@ -5,7 +5,7 @@
 
 
 #name{
-    width: var(--name-input-size);
+    width: 100%;
 }
 
 #filtersBtn{
@@ -24,6 +24,5 @@
     margin-top: 20px;
     width: 100%;
 }
-
 
 

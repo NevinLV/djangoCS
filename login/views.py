@@ -17,12 +17,11 @@ class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = 'login/login.html'
 
-    @csrf_exempt
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Авторизация'
         return dict(list(context.items()))
 
-    @csrf_exempt
     def get_success_url(self):
         return reverse_lazy('main')
 
@@ -32,8 +31,9 @@ class RegisterUser(CreateView):
     template_name = 'login/register.html'
     success_url = reverse_lazy('login')
 
-    @csrf_exempt
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Регистрация'
         return dict(list(context.items()))
 

@@ -13,19 +13,96 @@
     <header>
         <div id="logo" onclick="window.location.href = '/main';">
             <img src="{%  static 'landing/img/logo.png' %}" id="logo_img">
-            <span id="firstWord">COURSE</span> SPACE</div>
+            <div id="words">COURSE SPACE</div>
+        </div>
+
+        <div class="search">
+
+            <div id="input">
+                <div class="entry">
+                    <input type="text" id="name" placeholder="Поиск">
+{#                    <button id="filtersBtn"#}
+{#                    onclick=Filter()>Фильтры</button>#}
+{#                    <button class="find">Найти</button>#}
+                </div>
+            </div>
+
+            <div id="filters">
+
+                <div class="entry">
+                    <input type="text" id="autor" placeholder="Автор">
+                </div>
+
+                <div class="entry">
+                    <select id="category">
+                        <option>Категория</option>
+                        <option>IT</option>
+                        <option>Математика</option>
+                        <option>Физика</option>
+                        <option>Химия</option>
+                        <option>Здоровье</option>
+                        <option>Языки</option>
+                        <option>Искусство</option>
+                        <option>Кулинария</option>
+                        <option>Прочее</option>
+                    </select>
+                </div>
+
+                <div class="entry">
+                    <select id="day">
+                        <option>День</option>
+                        <option>1</option>
+                    </select>
+                    <select id="month">
+                        <option>Месяц</option>
+                        <option>Март</option>
+                    </select>
+                    <select id="year">
+                        <option>Год</option>
+                        <option>2001</option>
+                    </select>
+                </div>
+
+                <div class="entry">
+                    <input type="text" id="tegs" placeholder="Введите теги">
+                </div>
+            </div>
+        </div>
+
         <div id="user">
-            <div id="avatar"></div>
-            <div id="name" onclick="window.location.href = '{% url 'user_page' user.pk %}'">{{ user }}</div>
+            <img src="https://img.icons8.com/material/24/ffffff/user-male-circle--v1.png" id="avatar"/>
+            <div id="username" onclick="window.location.href = '{% url 'user_page' user.pk %}'">{{ user }}</div>
+{#            <img src="https://img.icons8.com/ios-filled/25/ffffff/door-opened.png" id="exit"/>#}
         </div>
     </header>
 
     <main>
+        {% if categories %}
+        <div class="List Min" id=Categories>
+            <div class="cline" id="сl1"></div>
 
+            <h1 onclick="window.location.href = '/main';">ВСЕ КУРСЫ</h1>
+            <h1>КАТЕГОРИИ</h1>
+            {% for cat in categories %}
+                {% if cat.title == title %}
+                    <div class="nav" id="c{{ cat.id }}" onclick="window.location.href = '{% url 'category' cat.pk %}'">
+                        <div class="pointBtnSelect"></div>
+                        <div class="courseTitleSelect">{{ cat.title }}</div>
+                    </div>
+                {% else %}
+                    <div class="nav" id="c{{ cat.id }}" onclick="window.location.href = '{% url 'category' cat.pk %}'">
+                        <div class="pointBtn"></div>
+                        <div class="courseTitle">{{ cat.title }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <h1>НАЙТИ КУРС</h1>
+        </div>
+
+        {% endif %}
         {% block content %}
 
         {% endblock %}
     </main>
 </body>
-<script src="/scripts/init.js"></script>
 </html>

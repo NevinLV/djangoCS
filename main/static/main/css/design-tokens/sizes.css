@@ -1,10 +1,10 @@
 @media (min-width: 480px) {
     :root{
-        --margin-body: 50px 14vw;
+        --margin-body: 50px 5vw;
         --height-header: 100px;
         --paddingTop-body: 60px;
 
-        --h1-size: 20pt;
+        --h1-size: 16pt;
         --p-size: 14px;
 
         --name-input-size: calc(100% - 320px);
