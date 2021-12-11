@@ -52,3 +52,20 @@ button{
     font-size: 14pt;
     margin-top: 0px;
 }
+
+input{
+    font-size: var(--p-size);
+    background-color: var(--white);
+    border-radius: 5px;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 5px;
+    margin-left: 0;
+    width: calc(100% - 30px);
+    display: inline-block;
+    color: var(--black);
+}
+input:focus{
+    background-color: var(--white);
+    outline: 0;
+}
