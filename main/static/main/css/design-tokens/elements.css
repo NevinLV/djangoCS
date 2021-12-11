@@ -93,6 +93,10 @@ p{
     padding-top: 0;
 }
 
+.List.Min h1:hover{
+    text-decoration: underline;
+}
+
 .List.Min h1{
     color: white;
 }
