@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render, redirect
 
 from .forms import AddCourseForm
-from .models import Courses, Categories
+from .models import *
 from django.contrib.auth.models import User
 
 def main(request):
@@ -18,6 +18,14 @@ def main(request):
 
 
 def create_course(request):
+    user = request.user
+    author = Authors.objects.filter(user_id=user.id)
+    if author.exists():
+        print(author)
+    else:
+        Authors.objects.create(name=user, user_id=user.id)
+    print(author)
+
     if request.method == 'POST':
         form = AddCourseForm(request.POST)
         if form.is_valid():

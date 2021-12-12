@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from login.forms import RegisterUserForm
-from main.models import Users
 
 
 # def login(request):
