@@ -1,4 +1,7 @@
-from django.shortcuts import render
+import requests
+from django.shortcuts import render, redirect
+
+from .forms import AddCourseForm
 from .models import Courses, Categories
 from django.contrib.auth.models import User
 
@@ -12,6 +15,27 @@ def main(request):
         'courses': courses,
     }
     return render(request, 'main/main.html', context=context)
+
+
+def create_course(request):
+    if request.method == 'POST':
+        form = AddCourseForm(request.POST)
+        if form.is_valid():
+            try:
+                Courses.objects.create(**form.cleaned_data)
+                return redirect('main')
+            except:
+                form.add_error(None, 'Ошибка добавления курса')
+    else:
+        form = AddCourseForm()
+
+    context = {
+        'form': form,
+        'title': 'Создание курса',
+
+    }
+    return render(request, 'main/createcourse.html', context=context)
+
 
 def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)

@@ -34,11 +34,18 @@ header{
     z-index: 999999;
 }
 
-#user{
+#rightpart{
     position: absolute;
     right: 60px;
     top: calc(50% - 18px);
     display: flex;
+    font-size: var(--p-size);
+}
+
+#user{
+    align-items: center;
+    display: flex;
+    flex: none;
     font-size: var(--p-size);
     color: var(--white);
 }

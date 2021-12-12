@@ -21,6 +21,35 @@ input:focus{
     outline: 0;
 }
 
+textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--p-size);
+    background-color: var(--lblack);
+    border-radius: 5px;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 400px;
+    display: inline-block;
+    color: var(--gray);
+    resize: none;
+}
+textarea:focus{
+    background-color: var(--lblack);
+    outline: 0;
+}
+
+label{
+    font-weight: 100;
+    font-size: var(--h1-size);
+    padding-top: 20px;
+    color: var(--white);
+}
+
+.form-line{
+    display: inline;
+}
 
 /* Поля выбора */
 select{
@@ -274,5 +303,21 @@ p{
     position: absolute;
     top: 237px;
     left: calc(5vw + 41px);
+}
+
+#addCourse{
+    border-color: var(--white);
+    border-style: solid;
+    border-width: 1px;
+    width: fit-content;
+    height: fit-content;
+    color: var(--white);
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 30px;
+}
+#addCourse:hover{
+    background-color: var(--lblack);
 }
 

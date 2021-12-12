@@ -69,11 +69,15 @@
             </div>
         </div>
 
-        <div id="user">
-            <img src="https://img.icons8.com/material/24/ffffff/user-male-circle--v1.png" id="avatar"/>
-            <div id="username" onclick="window.location.href = '{% url 'user_page' user.pk %}'">{{ user }}</div>
+        <div id="rightpart">
+            <button id="addCourse" onclick="window.location.href = '{% url 'create_course' %}'">+ создать курс</button>
+            <div id="user">
+                <img src="https://img.icons8.com/material/24/ffffff/user-male-circle--v1.png" id="avatar"/>
+                <div id="username" onclick="window.location.href = '{% url 'user_page' user.pk %}'">{{ user }}</div>
 {#            <img src="https://img.icons8.com/ios-filled/25/ffffff/door-opened.png" id="exit"/>#}
+            </div>
         </div>
+
     </header>
 
     <main>
