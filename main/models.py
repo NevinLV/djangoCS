@@ -24,25 +24,36 @@ class Categories(models.Model):
     class Meta:
         db_table = 'Categories'
 
+
     def __str__(self):
         return self.title
 
+# class CourseTag(models.Model):
+#     tag = models.ForeignKey('Tags', models.DO_NOTHING, db_column='Tag_id')  # Field name made lowercase.
+#     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'Course_Tag'
+#
+#
+# class CourseUser(models.Model):
+#     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
+#     user = models.ForeignKey('User', models.DO_NOTHING, db_column='User_id')  # Field name made lowercase.
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'Course_User'
 
-class CourseTag(models.Model):
-    tag = models.ForeignKey('Tags', models.DO_NOTHING, db_column='Tag_id')  # Field name made lowercase.
-    course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
+
+class Tags(models.Model):
+    title = models.TextField('path')
 
     class Meta:
-        db_table = 'Course_Tag'
+        db_table = 'Tags'
 
-
-class CourseUser(models.Model):
-    course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, models.DO_NOTHING, db_column='User_id')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'Course_User'
-
+    def __str__(self):
+        return self.title
 
 class Courses(models.Model):
     title = models.CharField('title', max_length=80, null=False)
@@ -50,6 +61,8 @@ class Courses(models.Model):
     date = models.TextField('date')
     category = models.ForeignKey(Categories, models.DO_NOTHING, db_column='Category_id')  # Field name made lowercase.
     author = models.ForeignKey(Authors, models.DO_NOTHING, db_column='Author_id')  # Field name made lowercase.
+    tags = models.ManyToManyField(Tags, related_name="course_tags")
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="course_users")
 
     class Meta:
         db_table = 'Courses'
@@ -64,16 +77,6 @@ class Img(models.Model):
 
     class Meta:
         db_table = 'Img'
-
-
-class Tags(models.Model):
-    title = models.TextField('path')
-
-    class Meta:
-        db_table = 'Tags'
-
-    def __str__(self):
-        return self.name
 
 
 class Video(models.Model):

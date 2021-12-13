@@ -12,6 +12,7 @@ now = datetime.datetime.now()
 def main(request):
     categories = Categories.objects.all()
     courses = Courses.objects.all()
+    print(courses)
 
     context = {
         'title': 'Главная',
@@ -24,6 +25,8 @@ def main(request):
 def create_course(request):
     user = request.user
     author = Authors.objects.filter(user_id=user.id)
+
+
     if not author.exists():
         Authors.objects.create(name=user, user_id=user.id)
         author = Authors.objects.filter(user_id=user.id)
@@ -55,6 +58,8 @@ def create_course(request):
 def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)
     all_categories = Categories.objects.all()
+
+
 
     context = {
         'categories': all_categories,
