@@ -8,6 +8,7 @@
 
 <h1>Создание курса</h1>
 {% block content %}
+
     <form action="{% url 'create_course' %}" method="post">
         {% csrf_token %}
 

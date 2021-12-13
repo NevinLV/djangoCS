@@ -7,20 +7,20 @@
 {% endblock %}
 
 {% block content %}
+    {% if object_list %}
         <div class="List">
-            <h1> </h1>
-            {% for el in course%}
-                <div class="card block" id="{{ el.id }}">
+            <h1>Результаты</h1>
+            {% for el in object_list%}
+            <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'">
                 <div class="lable">
                     <div class="text">
                         <div class="title">{{ el.title }}</div>
                         <div class="autor">Автор: {{ el.author }}</div>
                     </div>
                 </div>
-
-                <div class="desk">{{ el.description }}</div>
+                <div class="desk">{{el.description|truncatewords:50}}</div>
                 <div class="categor">Категория: {{ el.category }}</div>
-                <div class="tags"></br>
+                <div class="tags"> </br>
                     {% for tag in el.tags.all %}
                         <div>
                             {{ tag }}
@@ -31,10 +31,11 @@
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>
-                    <div class="go">Начать курс</div>
                 </div>
             </div>
-
             {% endfor %}
         </div>
+    {% else %}
+        <h1>Ничего не найдено</h1>
+    {% endif %}
 {% endblock %}

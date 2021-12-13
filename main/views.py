@@ -1,7 +1,9 @@
 import requests
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
-from .forms import AddCourseForm
+from .forms import AddCourseForm, SearchCourseForm
 from .models import *
 from django.contrib.auth.models import User
 import datetime
@@ -95,3 +97,41 @@ def show_user_page(request, user_id):
     }
 
     return render(request, 'main/userpage.html', context=context)
+
+
+def search_course(request):
+
+    if request.method == 'POST':
+        form = SearchCourseForm(request.POST)
+
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('main')
+            except:
+                form.add_error(None, 'Ошибка поиска')
+    else:
+        form = SearchCourseForm()
+
+    context = {
+        'form': form,
+        'title': 'Поиск',
+    }
+    return render(request, 'main/search.html', context=context)
+
+
+class results(ListView):
+    model = Courses
+    template_name = 'main/results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Courses.objects.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__name__icontains=query)
+        )
+        return object_list
+
+

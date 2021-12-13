@@ -19,54 +19,13 @@
         <div class="search">
 
             <div id="input">
-                <div class="entry">
-                    <input type="text" id="name" placeholder="Поиск">
-{#                    <button id="filtersBtn"#}
-{#                    onclick=Filter()>Фильтры</button>#}
-{#                    <button class="find">Найти</button>#}
-                </div>
+                <form action="{% url 'results' %}" method="get">
+                    <div class="entry">
+                        <input name="q"  type="text" id="name" placeholder="Поиск">
+                     </div>
+                </form>
             </div>
 
-            <div id="filters">
-
-                <div class="entry">
-                    <input type="text" id="autor" placeholder="Автор">
-                </div>
-
-                <div class="entry">
-                    <select id="category">
-                        <option>Категория</option>
-                        <option>IT</option>
-                        <option>Математика</option>
-                        <option>Физика</option>
-                        <option>Химия</option>
-                        <option>Здоровье</option>
-                        <option>Языки</option>
-                        <option>Искусство</option>
-                        <option>Кулинария</option>
-                        <option>Прочее</option>
-                    </select>
-                </div>
-
-                <div class="entry">
-                    <select id="day">
-                        <option>День</option>
-                        <option>1</option>
-                    </select>
-                    <select id="month">
-                        <option>Месяц</option>
-                        <option>Март</option>
-                    </select>
-                    <select id="year">
-                        <option>Год</option>
-                        <option>2001</option>
-                    </select>
-                </div>
-
-                <div class="entry">
-                    <input type="text" id="tegs" placeholder="Введите теги">
-                </div>
-            </div>
         </div>
 
         <div id="rightpart">
@@ -100,7 +59,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            <h1>НАЙТИ КУРС</h1>
+            <h1 onclick="window.location.href = '{% url 'search_course' %}'">НАЙТИ КУРС</h1>
         </div>
 
         {% endif %}
