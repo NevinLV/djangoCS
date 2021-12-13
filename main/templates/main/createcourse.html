@@ -11,7 +11,36 @@
     <form action="{% url 'create_course' %}" method="post">
         {% csrf_token %}
 
-        <div class="form-error">{{ form.non_field_errors }}</div>
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+{#        <div class="form-line">#}
+{#            <label class="form-label" for="{{ form.title.id_for_label }}">{{ form.title.label }}:#}
+{#            </label><br>#}
+{#            {{ form.title }}#}
+{#        </div>#}
+{#        <div class="form-error">{{ form.title.errors }}</div>#}
+{##}
+{#         <div class="form-line">#}
+{#            <label class="form-label" for="{{ form.description.id_for_label }}">{{ form.description.label }}:#}
+{#            </label><br>#}
+{#            {{ form.description }}#}
+{#        </div>#}
+{#        <div class="form-error">{{ form.description.errors }}</div>#}
+{##}
+{#        <div class="form-line">#}
+{#            <label class="form-label" for="{{ form.category.id_for_label }}">{{ form.category.label }}:#}
+{#            </label><br>#}
+{#            {{ form.category }}#}
+{#        </div>#}
+{#        <div class="form-error">{{ form.category.errors }}</div>#}
+{##}
+{#        <div class="form-line">#}
+{#            <label class="form-label" for="{{ form.author.id_for_label }}">{{ form.author.label }}:#}
+{#            </label><br>#}
+{#            {{ form.author }}#}
+{#        </div>#}
+{#        <div class="form-error">{{ form.author.errors }}</div>#}
+
         {% for f in form %}
             <div class="form-line"><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label><br>{{ f }}</div>
             <div class="form-error">{{ f.errors }}</div>

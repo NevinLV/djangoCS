@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect
 from .forms import AddCourseForm
 from .models import *
 from django.contrib.auth.models import User
+import datetime
+
+now = datetime.datetime.now()
+
 
 def main(request):
     categories = Categories.objects.all()
@@ -20,20 +24,23 @@ def main(request):
 def create_course(request):
     user = request.user
     author = Authors.objects.filter(user_id=user.id)
-    if author.exists():
-        print(author)
-    else:
+    if not author.exists():
         Authors.objects.create(name=user, user_id=user.id)
+        author = Authors.objects.filter(user_id=user.id)
     print(author)
 
     if request.method == 'POST':
         form = AddCourseForm(request.POST)
+        course = form.save(commit=False)
+        course.author = author[0]
+        course.date = now.strftime("%d.%m.%Y")
+
         if form.is_valid():
             try:
-                Courses.objects.create(**form.cleaned_data)
+                course.save()
                 return redirect('main')
             except:
-                form.add_error(None, 'Ошибка добавления курса')
+                course.add_error(None, 'Ошибка добавления курса')
     else:
         form = AddCourseForm()
 
@@ -74,6 +81,7 @@ def show_category(request, category_id):
 
     return render(request, 'main/courses.html', context=context)
 
+
 def show_user_page(request, user_id):
     user = User.objects.filter(id=user_id)
 
@@ -82,5 +90,3 @@ def show_user_page(request, user_id):
     }
 
     return render(request, 'main/userpage.html', context=context)
-
-
