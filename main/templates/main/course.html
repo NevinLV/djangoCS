@@ -16,12 +16,18 @@
                         <div class="title">{{ el.title }}</div>
                         <div class="autor">Автор: {{ el.author }}</div>
                     </div>
-                    <div class="img">
-
-                    </div>
                 </div>
 
                 <div class="desk">{{ el.description }}</div>
+                <div class="categor">Категория: {{ el.category }}</div>
+                <div class="tags"></br>
+                    {% for tag in el.tags.all %}
+                        <div>
+                            {{ tag }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="date">{{ el.date }}</div>
                 <button class="go"
                 onclick="window.location.href = '#'"
                 >Начать курс</button>

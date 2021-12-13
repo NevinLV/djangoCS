@@ -212,7 +212,16 @@ p{
                     display: inline-flex;
                 }
                 .tags > div{
-                    background-color: var(--llblack);
+                    /*background-color: var(--llblack);*/
+                    color: white;
+                    background:#fd644f;
+                    background:-moz-linear-gradient(45deg, #37a63d 0, #138819 100%);
+                    background:-webkit-gradient(left bottom,right top,color-stop(0,#37a63d),color-stop(100%,#138819));
+                    background:-webkit-linear-gradient(45deg,#37a63d 0,#138819 100%);
+                    background:-o-linear-gradient(45deg,#37a63d 0,#138819 100%);
+                    background:-ms-linear-gradient(45deg,#37a63d 0,#138819 100%);
+                    background:linear-gradient(45deg,#37a63d 0,#138819 100%);
+                    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0576ff',endColorstr='#24f8ff',GradientType=1)
                 }
 
         /* Дата */
@@ -227,6 +236,18 @@ p{
             position: absolute;
             bottom: 20px;
             right: 30px;
+        }
+
+        .card .stat{
+            display: flex;
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+        }
+        .card .stat .usercount{
+            margin-left: 5px;
+            padding-top: 2px;
+            font-size: 16px;
         }
 
     .small{
