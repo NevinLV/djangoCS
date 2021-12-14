@@ -12,7 +12,7 @@ class AddCourseForm(forms.ModelForm):
         self.fields['category'].empty_label = 'Не выбрана'
     class Meta:
         model = Courses
-        fields = ['title', 'description', 'category']
+        fields = ['title', 'description', 'category', 'tags']
         widgets = {
             'title': forms.TextInput(),
             'description': forms.Textarea(attrs={'cols': 60, 'rows': 10}),

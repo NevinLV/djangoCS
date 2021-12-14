@@ -100,24 +100,33 @@ def show_user_page(request, user_id):
 
 
 def search_course(request):
-
-    if request.method == 'POST':
-        form = SearchCourseForm(request.POST)
-
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('main')
-            except:
-                form.add_error(None, 'Ошибка поиска')
-    else:
-        form = SearchCourseForm()
+    all_categories = Categories.objects.all()
 
     context = {
-        'form': form,
         'title': 'Поиск',
+        'categories': all_categories,
     }
     return render(request, 'main/search.html', context=context)
+
+
+class advanced_results(ListView):
+    model = Courses
+    template_name = 'main/results.html'
+    
+
+    def get_queryset(self):
+        title = self.request.GET.get('title', default='')
+        desk = self.request.GET.get('desk', default='')
+        cat = self.request.GET.get('cat', default='')
+        author = self.request.GET.get('author', default='')
+
+        object_list = Courses.objects.filter(
+            Q(title__icontains=title) &
+            Q(description__icontains=desk) &
+            Q(category__title__icontains=cat) &
+            Q(author__name__icontains=author)
+        )
+        return object_list
 
 
 class results(ListView):
@@ -132,6 +141,7 @@ class results(ListView):
             Q(category__title__icontains=query) |
             Q(author__name__icontains=query)
         )
+
         return object_list
 
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import show_category, show_course, show_user_page, create_course, search_course, results
+from .views import show_category, show_course, show_user_page, create_course, search_course, results, advanced_results
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('/user/<int:user_id>/', show_user_page, name='user_page'),
     path('/create', create_course, name='create_course'),
     path('/search', search_course, name='search_course'),
-    path('/results', results.as_view(), name='results'),
+    path('/results', advanced_results.as_view(), name='adv_results'),
+    path('/fastresults', results.as_view(), name='results'),
 ]
