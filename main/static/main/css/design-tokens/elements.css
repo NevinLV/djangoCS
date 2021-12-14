@@ -356,3 +356,6 @@ p{
     background-color: var(--lblack);
 }
 
+label.form-label{
+    margin-left: 40px;
+}

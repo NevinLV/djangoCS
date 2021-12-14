@@ -28,7 +28,6 @@ def create_course(request):
     user = request.user
     author = Authors.objects.filter(user_id=user.id)
 
-
     if not author.exists():
         Authors.objects.create(name=user, user_id=user.id)
         author = Authors.objects.filter(user_id=user.id)
@@ -112,7 +111,7 @@ def search_course(request):
 class advanced_results(ListView):
     model = Courses
     template_name = 'main/results.html'
-    
+
 
     def get_queryset(self):
         title = self.request.GET.get('title', default='')

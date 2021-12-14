@@ -9,8 +9,6 @@ from django.views.generic import CreateView
 from login.forms import RegisterUserForm
 
 
-# def login(request):
-#     return render(request, 'login/login.html')
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm

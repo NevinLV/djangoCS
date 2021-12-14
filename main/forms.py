@@ -8,8 +8,9 @@ now = datetime.datetime.now()
 class AddCourseForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super().__init__( *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = 'Не выбрана'
+
     class Meta:
         model = Courses
         fields = ['title', 'description', 'category', 'tags']
@@ -22,8 +23,9 @@ class AddCourseForm(forms.ModelForm):
 class SearchCourseForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super().__init__( *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = 'Не выбрана'
+
     class Meta:
         model = Courses
         fields = ['title', 'description', 'category', 'author']
