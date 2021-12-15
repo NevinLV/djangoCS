@@ -14,7 +14,6 @@ now = datetime.datetime.now()
 def main(request):
     categories = Categories.objects.all()
     courses = Courses.objects.all()
-    print(courses)
 
     context = {
         'title': 'Главная',
@@ -28,10 +27,10 @@ def create_course(request):
     user = request.user
     author = Authors.objects.filter(user_id=user.id)
 
+
     if not author.exists():
         Authors.objects.create(name=user, user_id=user.id)
         author = Authors.objects.filter(user_id=user.id)
-    print(author)
 
     if request.method == 'POST':
         form = AddCourseForm(request.POST)
@@ -39,12 +38,31 @@ def create_course(request):
         course.author = author[0]
         course.date = now.strftime("%d.%m.%Y")
 
+
         if form.is_valid():
             try:
                 course.save()
+
+                tags = form.cleaned_data.get('tags')
+                tags_list = tags.split(', ')
+
+                for t in tags_list:
+                    print(t)
+                    tag = Tags.objects.filter(title=t)
+                    print(tag)
+                    if not tag.exists():
+                        print('не существую')
+                        print(t)
+                        Tags.objects.create(title=t)
+                        tag = Tags.objects.filter(title=t)
+
+                    print(t)
+                    course.save()
+                    course.tags.add(tag[0])
+
                 return redirect('main')
             except:
-                course.add_error(None, 'Ошибка добавления курса')
+                form.add_error(None, 'Ошибка добавления курса')
     else:
         form = AddCourseForm()
 
@@ -59,8 +77,6 @@ def create_course(request):
 def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)
     all_categories = Categories.objects.all()
-
-
 
     context = {
         'categories': all_categories,
