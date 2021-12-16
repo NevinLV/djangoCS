@@ -24,9 +24,10 @@ def main(request):
 
 
 def create_course(request):
+    all_categories = Categories.objects.all()
+
     user = request.user
     author = Authors.objects.filter(user_id=user.id)
-
 
     if not author.exists():
         Authors.objects.create(name=user, user_id=user.id)
@@ -44,19 +45,14 @@ def create_course(request):
                 course.save()
 
                 tags = form.cleaned_data.get('tags')
-                tags_list = tags.split(', ')
+                tags_list = tags.lower().split(', ')
 
                 for t in tags_list:
-                    print(t)
                     tag = Tags.objects.filter(title=t)
-                    print(tag)
                     if not tag.exists():
-                        print('не существую')
-                        print(t)
                         Tags.objects.create(title=t)
                         tag = Tags.objects.filter(title=t)
 
-                    print(t)
                     course.save()
                     course.tags.add(tag[0])
 
@@ -69,7 +65,7 @@ def create_course(request):
     context = {
         'form': form,
         'title': 'Создание курса',
-
+        'categories': all_categories,
     }
     return render(request, 'main/createcourse.html', context=context)
 
@@ -135,12 +131,16 @@ class advanced_results(ListView):
         cat = self.request.GET.get('cat', default='')
         author = self.request.GET.get('author', default='')
 
+        if cat == 'Категория':
+            cat = ''
+
         object_list = Courses.objects.filter(
             Q(title__icontains=title) &
             Q(description__icontains=desk) &
             Q(category__title__icontains=cat) &
             Q(author__name__icontains=author)
         )
+
         return object_list
 
 

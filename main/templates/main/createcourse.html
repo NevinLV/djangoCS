@@ -8,35 +8,23 @@
 
 <h1>Создание курса</h1>
 {% block content %}
-
-    <form action="{% url 'create_course' %}" method="post">
+    <form action="{% url 'create_course' %}" method="post" id="create">
         {% csrf_token %}
 
-<div class="form-error">{{ form.non_field_errors }}</div>
+        <div class="entry">
+            <h1>Создание курса</h1>
+            <div class="form-error">{{ form.non_field_errors }}</div>
 
-        <div class="form-line">
-            <label class="form-label" for="{{ form.title.id_for_label }}">Название курса:
-            </label><br>
-            {{ form.title }}
-        </div>
-        <div class="form-error">{{ form.title.errors }}</div>
+            {{ form.title }}{{ form.category }}
+            <div class="form-error">{{ form.category.errors }}</div>
+            <div class="form-error">{{ form.title.errors }}</div>
 
-         <div class="form-line">
-            <label class="form-label" for="{{ form.description.id_for_label }}">Описание:
-            </label><br>
             {{ form.description }}
-        </div>
-        <div class="form-error">{{ form.description.errors }}</div>
+            <div class="form-error">{{ form.description.errors }}</div>
 
-        <div class="form-line">
-            <label class="form-label" for="{{ form.category.id_for_label }}">Категория:
-            </label><br>
-            {{ form.category }}
-        </div>
-        <div class="form-error">{{ form.category.errors }}</div>
-        <label class="form-label"> Теги:
-            </label><br>
             {{ form.tags }}
-        <button type="submit">Добавить</button>
+
+            <button type="submit" id="add_course">Добавить</button>
+        </div>
     </form>
 {% endblock %}

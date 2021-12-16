@@ -21,6 +21,59 @@ input:focus{
     outline: 0;
 }
 
+select{
+    margin-left: 10px;
+    font-size: var(--p-size);
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+#add_course{
+    margin-left: 10px;
+    font-size: var(--p-size);
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: var(--llblack);
+    color: var(--lblack);
+    width: 130px;
+}
+
+#add_course:hover{
+    background-color: var(--gray);
+}
+
+#search_course_btn{
+    margin-left: 10px;
+    font-size: var(--p-size);
+    padding: 10px 15px;
+    background-color: var(--llblack);
+    color: var(--lblack);
+    width: 130px;
+}
+
+#search_course_btn{
+    background-color: var(--gray);
+    margin-left: 0;
+    width: 135px;
+}
+
+#search-select{
+    margin-left: 0;
+}
+
+#create input{
+    margin-top: 5px;
+    margin-left: 0;
+}
+
+#create{
+    width: 100%;
+}
+
+.form-line{
+    margin-top: 20px;
+}
+
 textarea{
     font-family: Arial, Helvetica, sans-serif;
     font-size: var(--p-size);
@@ -28,9 +81,9 @@ textarea{
     border-radius: 5px;
     border: none;
     padding: 10px 15px;
-    margin-top: 20px;
-    margin-left: 40px;
-    width: 400px;
+    margin-top: 10px;
+    margin-left: 0;
+    width: 544px;
     display: inline-block;
     color: var(--gray);
     resize: none;
@@ -46,6 +99,7 @@ label{
     padding-top: 20px;
     color: var(--white);
 }
+
 
 .form-line{
     display: inline;
@@ -376,22 +430,22 @@ label.form-label{
         .categor #l2.pointBtn {
             background: var(--tc6);
         }
-        .categor #l3.pointBtn #3{
+        .categor #l3.pointBtn {
             background: var(--tc3);
         }
-        .categor #l4.pointBtn #4{
+        .categor #l4.pointBtn {
             background: var(--tc4);
         }
-        .categor #l5.pointBtn #5{
+        .categor #l5.pointBtn {
             background: var(--tc5);
         }
-        .categor #l6.pointBtn #6{
+        .categor #l6.pointBtn {
             background: var(--tc2);
         }
-        .categor #l7.pointBtn #7{
+        .categor #l7.pointBtn {
             background: var(--tc7);
         }
-        .categor #l8.pointBtn #8{
+        .categor #l8.pointBtn {
             background: var(--tc8);
         }
         .categor #l9.pointBtn{
