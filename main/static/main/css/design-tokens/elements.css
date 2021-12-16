@@ -138,12 +138,12 @@ p{
 .block{
     /*background-color: white;*/
     background-color: var(--white);
-    border-radius: 5px;
+    border-radius: 10px;
     /*border-color: var(--white);*/
     /*border-style: solid;*/
     /*border-width: 1px;*/
     margin-right: 10px;
-    padding: 20px;
+    padding: 10px 40px;
     margin-bottom: 10px;
     -ms-user-select: none;
     -moz-user-select: none;
@@ -156,7 +156,7 @@ p{
     transition: 0.2s;
     width: calc(100% - 50px);
     display: block;
-    height: var(--card-height);    
+
     position: relative;
     flex: none;
     -webkit-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
@@ -170,14 +170,18 @@ p{
         /* Заголовок карты */
         .card .title{
             font-size: var(--card-title);
-            width: calc(var(--card-width));
             font-weight: bold;
         }
         /* Автор */
-        .card .autor{
+        .card .author{
+            display: flex;
             font-size: var(--card-autor);
-            color: #444444;
-            margin-bottom: 15px;
+            color: #111111;
+            margin-top: 20px;
+        }
+        .card .author #authorname{
+            margin-top: 3px;
+            margin-left: 5px;
         }
         /* Изображение */
         .card .img{
@@ -192,36 +196,41 @@ p{
         }
         /* Категория */
         .card .categor{
+            display: flex;
             font-size: var(--card-categ);
-            padding-top: 45px;
+            margin-bottom: 10px;
         }
-        /* Теги */
+        .categor .pointBtn{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border-style: none;
+            margin-right: 7px;
+            margin-left: 0;
+            margin-top: 3px;
+            z-index: 900;
+}
+ /* Теги */
         .card .tags{
+            margin-top: 60px;
             font-size: var(--card-tegs);
-            display: block;
-            width: 100%;
+            display: flex;
+            flex: none;
+            width: 300px;
         }
 
                 .tags > div{
-                    margin: 3px 0px;
-                    padding-left: 10px;
-                    padding-right: 10px;
+                    margin-bottom: 4px;
+                    margin-right: 4px;
+                    padding: 8px 15px;
                     color:var(--gray);
-                    border-radius: 4px;
-                    text-transform: uppercase;
+                    border-radius: 3px;
+                    /*text-transform: uppercase;*/
                     display: inline-flex;
                 }
                 .tags > div{
-                    /*background-color: var(--llblack);*/
-                    color: white;
-                    background:#fd644f;
-                    background:-moz-linear-gradient(45deg, #37a63d 0, #138819 100%);
-                    background:-webkit-gradient(left bottom,right top,color-stop(0,#37a63d),color-stop(100%,#138819));
-                    background:-webkit-linear-gradient(45deg,#37a63d 0,#138819 100%);
-                    background:-o-linear-gradient(45deg,#37a63d 0,#138819 100%);
-                    background:-ms-linear-gradient(45deg,#37a63d 0,#138819 100%);
-                    background:linear-gradient(45deg,#37a63d 0,#138819 100%);
-                    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0576ff',endColorstr='#24f8ff',GradientType=1)
+                    background-color: #dcdcdc;
+                    color: #707070;
                 }
 
         /* Дата */
@@ -229,7 +238,8 @@ p{
             font-size: 12px;
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 40px;
+            display: flex;
         }
 
         .card button{
@@ -241,8 +251,8 @@ p{
         .card .stat{
             display: flex;
             position: absolute;
-            bottom: 20px;
-            right: 30px;
+            bottom: 10px;
+            right: 40px;
         }
         .card .stat .usercount{
             margin-left: 5px;
@@ -359,3 +369,31 @@ p{
 label.form-label{
     margin-left: 40px;
 }
+
+        .categor  #l1.pointBtn{
+            background: var(--tc1);
+        }
+        .categor #l2.pointBtn {
+            background: var(--tc6);
+        }
+        .categor #l3.pointBtn #3{
+            background: var(--tc3);
+        }
+        .categor #l4.pointBtn #4{
+            background: var(--tc4);
+        }
+        .categor #l5.pointBtn #5{
+            background: var(--tc5);
+        }
+        .categor #l6.pointBtn #6{
+            background: var(--tc2);
+        }
+        .categor #l7.pointBtn #7{
+            background: var(--tc7);
+        }
+        .categor #l8.pointBtn #8{
+            background: var(--tc8);
+        }
+        .categor #l9.pointBtn{
+            background: var(--c9);
+        }
