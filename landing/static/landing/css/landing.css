@@ -354,6 +354,13 @@ h2{
     color: var(--gray);
 }
 
+#w5{
+    padding-left: 5vw;
+    margin-top: 0px;
+    font-size: 20pt;
+    color: white;
+}
+
 #button-design .b-blue,#button-design .b-blue:before{
     background:#0576ff;
     background:-moz-linear-gradient(45deg,#0576ff 0,#24f8ff 100%);
@@ -389,3 +396,4 @@ h2{
     text-align: right;
     margin-right: 120px;
 }
+
