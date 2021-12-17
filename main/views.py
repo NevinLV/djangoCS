@@ -74,10 +74,16 @@ def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)
     all_categories = Categories.objects.all()
 
+    user = request.user
+    user_has_course = Courses.objects.filter(users__id=user.id, id=course_id)
+
+    print(user_has_course)
+
     context = {
         'categories': all_categories,
         'course': course,
         'title': course[0],
+        'user_has_course': user_has_course,
     }
 
     return render(request, 'main/course.html', context=context)
@@ -160,18 +166,4 @@ class results(ListView):
         return object_list
 
 
-class subscribe(ListView):
-    model = Courses
-    template_name = 'main/results.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Courses.objects.filter(
-            Q(title__icontains=query) |
-            Q(description__icontains=query) |
-            Q(category__title__icontains=query) |
-            Q(author__name__icontains=query)
-        )
-
-        return object_list
 

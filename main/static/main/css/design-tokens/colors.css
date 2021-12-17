@@ -1,11 +1,20 @@
 :root {
-    --black: #1F1F1F;
+    --black: rgb(31, 31, 31);
     --lblack: #353535;
     --llblack: #cbcbcb;
     --gray: #AAAAAA;
     --lgray: #D3D3D3;
     --white: #F0F0F0;
     --lwhite: #FAFAFA;
+
+    /*--lwhite: rgb(31, 31, 31);*/
+    /*--white: #353535;*/
+    /*--lgray: #cbcbcb;*/
+    /*--gray: #AAAAAA;*/
+    /*--llblack: #D3D3D3;*/
+    /*--lblack: #F0F0F0;*/
+    /*--black: #FAFAFA;*/
+
 
     --c1: #d5dafa;
     --c2: #d2e6fd;
