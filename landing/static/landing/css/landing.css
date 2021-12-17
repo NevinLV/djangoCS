@@ -38,8 +38,8 @@ body{
 
 #section1{
     background-color: var(--black);
-    /*background-image: url(../img/4.png);*/
-    /*background-repeat: no-repeat;*/
+    background-image: url(../img/4.png);
+    background-repeat: no-repeat;
 }
 #section2{
     background-color: var(--white);
@@ -301,15 +301,6 @@ button:active {
     left: 60px;
     top: -100px;
     width: 400px;
-    height: auto;
-    transform: rotate(-8.19deg);
-}
-
-#logoimg{
-    /*position: absolute;*/
-    /*left: 60px;*/
-    /*top: -100px;*/
-    width: 40px;
     height: auto;
     transform: rotate(-8.19deg);
 }
