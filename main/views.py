@@ -160,3 +160,18 @@ class results(ListView):
         return object_list
 
 
+class subscribe(ListView):
+    model = Courses
+    template_name = 'main/results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Courses.objects.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__name__icontains=query)
+        )
+
+        return object_list
+
