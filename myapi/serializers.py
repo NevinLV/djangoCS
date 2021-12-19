@@ -18,7 +18,8 @@ class CoursesSerializer(serializers.HyperlinkedModelSerializer):
     def get_categ_title(self, obj):
         return obj.category.title
 
-class CoursesSerializer(serializers.HyperlinkedModelSerializer):
+
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Courses
         fields = ('title', 'description', 'date', 'category', 'author')

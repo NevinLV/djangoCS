@@ -8,3 +8,7 @@ from myapi.serializers import CoursesSerializer
 class CoursesViewSet(viewsets.ModelViewSet):
     queryset = Courses.objects.all()
     serializer_class = CoursesSerializer
+
+class CourseFromCategoryViewSet(viewsets.ModelViewSet):
+    queryset = Courses.objects.all()
+    serializer_class = CoursesSerializer
