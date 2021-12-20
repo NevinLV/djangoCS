@@ -252,7 +252,7 @@ p{
         .card .categor{
             display: flex;
             font-size: var(--card-categ);
-            margin-bottom: 10px;
+            /*margin-bottom: 10px;*/
         }
         .categor .pointBtn{
             width: 15px;

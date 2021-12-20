@@ -126,6 +126,7 @@ def search_course(request):
     return render(request, 'main/search.html', context=context)
 
 
+
 class advanced_results(ListView):
     model = Courses
     template_name = 'main/results.html'
@@ -164,6 +165,19 @@ class results(ListView):
         )
 
         return object_list
+
+def deleteCourse(request, course_id):
+    Courses.objects.filter(id=course_id).delete()
+
+    categories = Categories.objects.all()
+    courses = Courses.objects.all()
+
+    context = {
+        'title': 'Главная',
+        'categories': categories,
+        'courses': courses,
+    }
+    return render(request, 'main/main.html', context=context)
 
 
 
