@@ -35,7 +35,8 @@
                     </div>
 
                 </div>
-                <div class="date"><div class="go">Удалить </div>{{ el.date }}</div>
+                <div class="date"><div class="go" onclick="window.location.href = '{% url 'delete' el.pk %}">Удалить
+                </div>{{ el.date }}</div>
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>

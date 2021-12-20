@@ -5,7 +5,7 @@ from .views import show_category, show_course, show_user_page, create_course, se
 
 urlpatterns = [
     path('', views.main, name='main'),
-    path('', deleteCourse, name='delete'),
+    path('/<int:course_id>/', deleteCourse, name='delete'),
     path('/course/<int:course_id>/', show_course, name='course'),
     path('/category/<int:category_id>/', show_category, name='category'),
     path('/user/<int:user_id>/', show_user_page, name='user_page'),
