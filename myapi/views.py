@@ -29,3 +29,14 @@ class GetCoursesInfoView(APIView):
             many=True # Указываем, что на вход подаётся именно набор записей
         )
         return Response(serializer_for_queryset.data)
+
+class GetCourseView(APIView):
+    def get(self, request, course_id):
+        # Получаем набор всех записей из таблицы Capital
+        queryset = Courses.objects.filter(id=course_id)
+        # Сериализуем извлечённый набор записей
+        serializer_for_queryset = CoursesSerializer(
+            instance=queryset, # Передаём набор записей
+            many=True # Указываем, что на вход подаётся именно набор записей
+        )
+        return Response(serializer_for_queryset.data)
