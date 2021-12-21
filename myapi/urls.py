@@ -2,19 +2,15 @@ from django.urls import path, include
 from . import views
 from rest_framework import routers
 
+from .views import GetCoursesInfoView, CoursesViewSet
+
 router = routers.DefaultRouter()
-router.register(r'/v1', views.CoursesViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    # path('/it', views.CategoryViewSet),
-    # path('/math', views.CategoryViewSet),
-    # path('/physics', views.CategoryViewSet),
-    # path('/chemistry', views.CategoryViewSet),
-    # path('/medicine', views.CategoryViewSet),
-    # path('/languages', views.CategoryViewSet),
-    # path('/art', views.CategoryViewSet),
-    # path('/cooking', views.CategoryViewSet),
-    # path('/other', views.CategoryViewSet),
+    path('/v1/category/<int:category_id>/', GetCoursesInfoView.as_view()),
+    path('/v1/all', CoursesViewSet.as_view()),
+    # path('/user/<int:user_id>/', show_user_page,),
+
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
