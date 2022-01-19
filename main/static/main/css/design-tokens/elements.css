@@ -264,7 +264,7 @@ p{
             margin-right: 7px;
             margin-left: 0;
             margin-top: 3px;
-            z-index: 900;
+            z-index: 2;
 }
  /* Теги */
         .card .tags{
@@ -346,6 +346,41 @@ p{
             padding: 2px 5px;
         }
 
+        .card .courseToolbar{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            width: auto;
+            height: auto;
+        }
+
+        .card .courseToolbar button{
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: var(--lgray);
+        }
+
+        .card .courseToolbar button:hover{
+
+            background-color: var(--gray);
+        }
+
+        #edit{
+            border-radius: 6px 0 0 6px;
+        }
+        #coursedelete{
+
+            border-radius: 0 6px 6px 0;
+        }
+
     .small{
             width: 300px;
             height: 10px;
@@ -376,7 +411,7 @@ p{
     border-width: 2px;
     border-style: solid;
     margin-right: 10px;
-    z-index: 900;
+    z-index: 2;
 }
 
 .nav{
@@ -469,3 +504,79 @@ label.form-label{
         .categor #l9.pointBtn{
             background: var(--c9);
         }
+
+.application {
+  box-shadow: 0 0 10px #777;
+  position: fixed;
+  top: calc(50% - 100px);
+    left: calc(50% - 200px);
+  width: 500px;
+    height: 220px;
+    z-index: 999;
+}
+
+.application .close {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
+.container {
+  position: relative;
+  z-index: 999;
+  background: #fff;
+    height: 200px;
+      padding-left: 20px;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+
+.application:before {
+   content: '';
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   background: url(http://ultraimg.com/images/Ho6hQWs.jpg) center no-repeat;
+  background-size: cover;
+    filter: blur(2px);
+}
+
+.application:after {
+  content: '';
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+}
+.container .argueBtn{
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: 40px;
+}
+#not{
+    position: relative;
+    display: block;
+    margin-right: 3px;
+    background-color: white;
+    border-color: var(--lblack);
+    color: var(--lblack);
+    border-style: solid;
+    border-width: 1px;
+}
+#yes{
+    position: relative;
+    display: block;
+    background-color: firebrick;
+    color: white;
+    margin-left: 3px;
+}

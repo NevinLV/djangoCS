@@ -66,6 +66,22 @@
         {% block content %}
 
         {% endblock %}
+
+        <section class="application" id="hidden_content" style="display:none;">
+              <div class="container">
+                <h2>Удаление курса!</h2>
+                <p>Вы уверены, что хотите удалить курс? </p>
+                  <div class="argueBtn">
+                      <button id="not" onclick="toggle(hidden_content)">Нет</button>
+                      <button id="yes" onclick="toggle(hidden_content)">Да</button>
+                  </div>
+              </div>
+        </section>
+    <script>
+        function toggle(el) {
+          el.style.display = (el.style.display == 'none') ? '' : 'none';
+        }
+    </script>
     </main>
 </body>
 </html>

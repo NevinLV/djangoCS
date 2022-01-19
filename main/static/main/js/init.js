@@ -1,14 +1,6 @@
-var f = false;
-function Filter() {
-    if(!f)
-    {
-        document.getElementById('filters').style.display='inline-flex';
-        f = true;
-    }
-    else{
-        document.getElementById('filters').style.display='none';
-        f = false;
-    }
+function toggle(el) {
+  //el.style.display = (el.style.display == 'none') ? '' : 'none';
+  console.log("Хуйня ебучая");
 }
 
 

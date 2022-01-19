@@ -10,14 +10,21 @@
     {% if courses %}
         <div class="List">
             <h1>Курсы по направлению "{{ title }}"</h1>
-                        {% for el in courses%}
-                <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'">
-                <div class="categor">
-                    <div class="pointBtn" id="l{{ el.category.pk }}"></div>
-                    {{ el.category }}</div>
+                {% for el in courses%}
+                <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'"><div class="author">
+                    <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
+                    <div id="authorname">
+                        {{ el.author }}
+                    </div>
+                    <div class="date"> - {{ el.date }}</div>
+                </div>
                 <div class="lable">
                     <div class="text">
                         <div class="title">{{ el.title }}</div>
+                    </div>
+                    <div class="categor">
+                        <div class="pointBtn" id="l{{ el.category.pk }}"></div>
+                        {{ el.category }}
                     </div>
                 </div>
                     <div class="desk">{{el.description|truncatewords:50}}</div>
@@ -29,14 +36,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class="author">
-                    <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
-                    <div id="authorname">
-                        {{ el.author }}
-                    </div>
 
-                </div>
-                <div class="date">{{ el.date }}</div>
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>

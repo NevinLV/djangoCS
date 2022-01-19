@@ -31,7 +31,7 @@ header{
     background-color: var(--black);
     color: var(--gray);
 
-    z-index: 999999;
+    z-index: 5;
 }
 
 #rightpart{
