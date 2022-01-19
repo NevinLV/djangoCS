@@ -252,6 +252,8 @@ p{
         .card .categor{
             display: flex;
             font-size: var(--card-categ);
+            margin-top: 13px;
+            margin-left: 13px;
             /*margin-bottom: 10px;*/
         }
         .categor .pointBtn{
@@ -290,10 +292,13 @@ p{
         /* Дата */
         .card .date{
             font-size: 12px;
-            position: absolute;
-            top: 20px;
-            right: 40px;
+            /*position: absolute;*/
+/*            top: 20px;
+            right: 40px;*/
+            margin-left: 10px;
+            margin-top: 4px;
             display: flex;
+            color: #707070;
         }
 
         .card button{
