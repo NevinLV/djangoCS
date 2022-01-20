@@ -71,50 +71,56 @@ def create_course(request):
 
 
 def edit_course(request, course_id):
+    user = request.user
     all_categories = Categories.objects.all()
     selCourse = Courses.objects.filter(id=course_id)
     selectCourse = Courses.objects.get(id=course_id)
 
-    if request.method == 'POST':
-        selectCourse.title = request.POST.get('title')
-        selectCourse.description = request.POST.get('desk')
-        category = request.POST.get('cat')
-        selectCourse.category = Categories.objects.get(title=category)
-        selectCourse.save()
+    if user == selectCourse.author.user or user.is_superuser:
+        if request.method == 'POST':
+            selectCourse.title = request.POST.get('title')
+            selectCourse.description = request.POST.get('desk')
+            category = request.POST.get('cat')
+            selectCourse.category = Categories.objects.get(title=category)
+            selectCourse.save()
 
-        try:
-            tags = request.POST.get('tags')
-            tags_list = tags.lower().split(', ')
+            try:
+                tags = request.POST.get('tags')
+                tags_list = tags.lower().split(', ')
 
-            for t in tags_list:
-                tag = Tags.objects.filter(title=t)
-                if not tag.exists():
-                    Tags.objects.create(title=t)
+                for t in tags_list:
                     tag = Tags.objects.filter(title=t)
+                    if not tag.exists():
+                        Tags.objects.create(title=t)
+                        tag = Tags.objects.filter(title=t)
 
-                if t != '':
-                    if not selectCourse.tags.filter(title=t).exists():
-                        print("Они не равны")
-                        selectCourse.tags.add(tag[0])
-                selectCourse.save()
+                    if t != '':
+                        if not selectCourse.tags.filter(title=t).exists():
+                            selectCourse.tags.add(tag[0])
+                    selectCourse.save()
 
-            return redirect('main')
-        except:
-            print("Ой, что-то пошло не так")
+                return redirect('main')
+            except:
+                print("Ой, что-то пошло не так")
 
-    else:
+        else:
+            form = EditCourseForm()
+
+
         form = EditCourseForm()
-
-
-    form = EditCourseForm()
-    context = {
-        'form': form,
-        'title': 'Редактирование курса',
-        'categories': all_categories,
-        'course': selCourse,
-    }
-    return render(request, 'main/editcourse.html', context=context)
-
+        context = {
+            'form': form,
+            'title': 'Редактирование курса',
+            'categories': all_categories,
+            'course': selCourse,
+        }
+        return render(request, 'main/editcourse.html', context=context)
+    else:
+        context = {
+            'title': 'Ошибка доступа',
+            'categories': all_categories,
+        }
+        return render(request, 'main/accessisdenied.html', context=context)
 
 def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)

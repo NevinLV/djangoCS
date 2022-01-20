@@ -39,6 +39,11 @@
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>
+                    {% if user_has_course%}
+                        <div class="userhascourse">Вы записаны</div></div>
+                    {% else %}
+                        <div class="go">Записаться</div></div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
