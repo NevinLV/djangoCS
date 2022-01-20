@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from .forms import AddCourseForm, SearchCourseForm
+from .forms import *
 from .models import *
 from django.contrib.auth.models import User
 import datetime
@@ -68,6 +68,52 @@ def create_course(request):
         'categories': all_categories,
     }
     return render(request, 'main/createcourse.html', context=context)
+
+
+def edit_course(request, course_id):
+    all_categories = Categories.objects.all()
+    selCourse = Courses.objects.filter(id=course_id)
+    selectCourse = Courses.objects.get(id=course_id)
+
+    if request.method == 'POST':
+        selectCourse.title = request.POST.get('title')
+        selectCourse.description = request.POST.get('desk')
+        category = request.POST.get('cat')
+        selectCourse.category = Categories.objects.get(title=category)
+        selectCourse.save()
+
+        try:
+            tags = request.POST.get('tags')
+            tags_list = tags.lower().split(', ')
+
+            for t in tags_list:
+                tag = Tags.objects.filter(title=t)
+                if not tag.exists():
+                    Tags.objects.create(title=t)
+                    tag = Tags.objects.filter(title=t)
+
+                if t != '':
+                    if not selectCourse.tags.filter(title=t).exists():
+                        print("Они не равны")
+                        selectCourse.tags.add(tag[0])
+                selectCourse.save()
+
+            return redirect('main')
+        except:
+            print("Ой, что-то пошло не так")
+
+    else:
+        form = EditCourseForm()
+
+
+    form = EditCourseForm()
+    context = {
+        'form': form,
+        'title': 'Редактирование курса',
+        'categories': all_categories,
+        'course': selCourse,
+    }
+    return render(request, 'main/editcourse.html', context=context)
 
 
 def show_course(request, course_id):
@@ -166,18 +212,12 @@ class results(ListView):
 
         return object_list
 
-def deleteCourse(request, course_id):
-    Courses.objects.filter(id=course_id).delete()
 
-    categories = Categories.objects.all()
-    courses = Courses.objects.all()
+def delete_course(request, course_id):
 
-    context = {
-        'title': 'Главная',
-        'categories': categories,
-        'courses': courses,
-    }
-    return render(request, 'main/main.html', context=context)
+    #Courses.objects.get(id=course_id).tags.all().delete()
+    print(Courses.tags[0])
+    return redirect('main')
 
 
 

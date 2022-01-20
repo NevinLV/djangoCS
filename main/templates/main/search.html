@@ -7,22 +7,16 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'adv_results' %}" method="get" id="create">
+    <form action="{% url 'adv_results' %}" method="get" id="edit">
         <h1>Поиск</h1>
         <div class="entry">
             <input name="title" type="text" placeholder="Название курса">
             <input id="search-author" name="author"  type="text" placeholder="Автор">
             <select id="search-select"name="cat" type="text" placeholder="Категория">
                 <option>Категория</option>
-                <option>IT</option>
-                <option>Математика</option>
-                <option>Физика</option>
-                <option>Химия</option>
-                <option>Медицина</option>
-                <option>Языки</option>
-                <option>Искусство</option>
-                <option>Кулинария</option>
-                <option>Прочее</option>
+                {% for cat in categories %}
+                    <option>{{ cat.title }}</option>
+                {% endfor %}
             </select><br>
             <input name="desk"  type="text" placeholder="Описание">
             <input name="tags"  type="text" placeholder="Теги (через запятую)">

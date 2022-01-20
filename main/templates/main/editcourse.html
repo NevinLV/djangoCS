@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
+{% endblock %}
+
+<h1>Редактирование курса</h1>
+{% block content %}
+    {% for el in course%}
+        <form action="{% url 'edit_course' el.id %}" method="POST" id="create">
+        {% csrf_token %}
+            <h1>Редактирование курса</h1>
+            <div class="entry">
+                <input name="title" type="text" placeholder="Название курса" value="{{ el.title }}">
+                <select id="search-select" name="cat" type="text" placeholder="{{ el.category }}">
+                    <option>{{ el.category }}</option>
+                    {% for cat in categories %}
+                        {% if cat.title != el.category.title %}
+                            <option>{{ cat.title }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select><br>
+                <textarea name="desk" cols="60" rows="10" id="descriptionInput" type="text" placeholder="Описание">{{ el.description }}</textarea>
+
+            </div>
+            <input id="tagsinput" name="tags"  type="text" placeholder="Теги (через запятую)"
+            value="{% for tag in el.tags.all %}{{ tag }}, {% endfor %}"></br>
+
+            <div id="editbtn">
+                <button id="cancelbtn" type="button" onclick="window.location.href = '/main';">Отменить</button>
+                <button id="yesbtn" type="submit">Изменить</button>
+            </div>
+
+        </form>
+    {% endfor %}
+{% endblock %}

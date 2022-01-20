@@ -1,12 +1,12 @@
 from django.urls import path
 from . import views
-from .views import show_category, show_course, show_user_page, create_course, search_course, results, advanced_results, \
-    deleteCourse
+from .views import *
 
 urlpatterns = [
     path('', views.main, name='main'),
-    path('/<int:course_id>/', deleteCourse, name='delete'),
     path('/course/<int:course_id>/', show_course, name='course'),
+    path('/course/<int:course_id>/edit', edit_course, name='edit_course'),
+    path('/course/<int:course_id>/delete', delete_course, name='delete_course'),
     path('/category/<int:category_id>/', show_category, name='category'),
     path('/user/<int:user_id>/', show_user_page, name='user_page'),
     path('/create', create_course, name='create_course'),
