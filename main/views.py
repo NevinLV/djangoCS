@@ -189,6 +189,10 @@ class advanced_results(ListView):
         desk = self.request.GET.get('desk', default='')
         cat = self.request.GET.get('cat', default='')
         author = self.request.GET.get('author', default='')
+        tags = self.request.GET.get('tags', default='')
+
+        tags_list = tags.lower().split(', ')
+
 
         if cat == 'Категория':
             cat = ''
@@ -197,8 +201,9 @@ class advanced_results(ListView):
             Q(title__icontains=title) &
             Q(description__icontains=desk) &
             Q(category__title__icontains=cat) &
-            Q(author__name__icontains=author)
-        )
+            Q(author__name__icontains=author) &
+            Q(tags__title__in=tags_list)
+        ).distinct()
 
         return object_list
 
@@ -213,8 +218,9 @@ class results(ListView):
             Q(title__icontains=query) |
             Q(description__icontains=query) |
             Q(category__title__icontains=query) |
-            Q(author__name__icontains=query)
-        )
+            Q(author__name__icontains=query) |
+            Q(tags__title__icontains=query)
+        ).distinct()
 
         return object_list
 
