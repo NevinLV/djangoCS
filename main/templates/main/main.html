@@ -11,7 +11,7 @@
         <div class="List" id="all">
         <h1>Каталог всех курсов</h1>
             {% for el in courses%}
-                <div class="card block" id="{{ el.id }}" {% comment %}onclick="window.location.href = '{% url 'course' el.pk %}'"{% endcomment %}><div class="author">
+                <div class="card block" id="{{ el.id }}"><div class="author">
                     <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
                     <div id="authorname">
                         {{ el.author }}
@@ -40,6 +40,7 @@
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>
+                    <div class="go" onclick="window.location.href = '{% url 'course' el.pk %}'">ПОДРОБНЕЕ</div>
                 </div>
 
                 {% if user == el.author.user %}

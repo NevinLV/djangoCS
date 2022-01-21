@@ -345,7 +345,7 @@ p{
             display: flex;
             position: absolute;
             bottom: 10px;
-            right: 40px;
+            right: 10px;
             flex: none;
             align-items: center;
         }
@@ -353,31 +353,38 @@ p{
             margin-left: 5px;
             padding-top: 2px;
             font-size: 16px;
+            margin-right: 10px;
         }
 
         .card .stat .go{
             position: relative;
             margin-left: 20px;
-            padding-top: 2px;
             background-color: var(--black);
+            margin-bottom: 4px;
+            margin-right: 4px;
+            padding: 8px 15px;
             color: white;
-            padding-left: 10px;
-            padding-right: 10px;
             border-radius: 3px;
+            font-size: 14px;
         }
         .card .stat .go:hover{
             background-color: var(--lblack);
         }
 
         .card .stat .userhascourse{
-            background-color: rgba(102, 102, 102, 0);
-            color: #37a63d;
-            border-radius: 3px;
-            border: solid;
-            border-width: 1px;
-            border-color: #37a63d;
+            position: relative;
             margin-left: 20px;
-            padding: 2px 5px;
+            background-color: var(--lred);
+            margin-bottom: 4px;
+            margin-right: 4px;
+            padding: 8px 15px;
+            color: white;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .card .stat .userhascourse:hover{
+            background-color: var(--llred);
         }
 
         .card .courseToolbar{

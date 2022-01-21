@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block content %}
-        <div class="List">
-            <h1> </h1>
+    <div class="List" id="all">
+        <h1> </h1>
             {% for el in course%}
-                <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'"><div class="author">
+                <div class="card block" id="{{ el.id }}" {% comment %}onclick="window.location.href = '{% url 'course' el.pk %}'"{% endcomment %}><div class="author">
                     <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
                     <div id="authorname">
                         {{ el.author }}
@@ -40,12 +40,52 @@
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
                     <div class="usercount"> {{ el.users.all.count }}</div>
                     {% if user_has_course%}
-                        <div class="userhascourse">Вы записаны</div></div>
+                        <div class="userhascourse" onclick="window.location.href = '{% url 'unsub_course' el.pk  %}'">ОТПИСАТЬСЯ</div>
                     {% else %}
-                        <div class="go">Записаться</div></div>
+                        <div class="go" onclick="window.location.href = '{% url 'sub_course' el.pk  %}'">ЗАПИСАТЬСЯ</div>
                     {% endif %}
                 </div>
+
+                {% if user == el.author.user %}
+                    <div class = "courseToolbar">
+                        <button class = "toolBtn" id="edit" onclick="window.location.href = '{% url 'edit_course' el.pk  %}'">
+                            <img class="courseAuthorAvatar" src="{%  static 'main/img/pen.png' %}">
+                        </button>
+                        <button class = "toolBtn" id="coursedelete" onclick="toggle(hidden_content)">
+                            <img class="courseAuthorAvatar" src="{%  static 'main/img/delete.png' %}">
+                        </button>
+                    </div>
+                {% elif user.is_superuser %}
+                    <div class = "courseToolbar">
+                        <button class = "toolBtn" id="edit" onclick="window.location.href = '{% url 'edit_course' el.pk  %}'">
+                            <img class="courseAuthorAvatar" src="{%  static 'main/img/pen.png' %}">
+                        </button>
+                        <button class = "toolBtn" id="coursedelete" onclick="toggle(hidden_content)">
+                            <img class="courseAuthorAvatar" src="{%  static 'main/img/delete.png' %}">
+                        </button>
+                    </div>
+                {% endif %}
+
             </div>
+            <section class="application" id="hidden_content" style="display:none;">
+                <div class="container">
+                <h2>Удаление курса!</h2>
+                <p>Вы уверены, что хотите удалить курс? </p>
+                    <div class="argueBtn">
+                      <button id="not" onclick="toggle(hidden_content)">Нет</button>
+                      <button id="yes" onclick="window.location.href = '{% url 'delete_course' el.pk %}'">Да</button>
+                  </div>
+              </div>
+            </section>
+
+            <script>
+                function toggle(el) {
+                  el.style.display = (el.style.display == 'none') ? '' : 'none';
+                }
+            </script>
             {% endfor %}
         </div>
+        </div>
+
 {% endblock %}
+

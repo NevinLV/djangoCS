@@ -1,5 +1,6 @@
 import requests
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
@@ -226,10 +227,23 @@ class results(ListView):
 
 
 def delete_course(request, course_id):
-
-    #Courses.objects.get(id=course_id).tags.all().delete()
-    print(Courses.tags[0])
+    Courses.objects.get(id=course_id).tags.all().delete()
     return redirect('main')
+
+
+def sub_course(request, course_id):
+    user = request.user
+    usercourse = Courses.objects.get(id=course_id)
+    usercourse.users.add(user)
+
+    return redirect('course', course_id)
+
+def unsub_course(request, course_id):
+    user = request.user
+    usercourse = Courses.objects.get(id=course_id)
+    usercourse.users.remove(user)
+
+    return redirect('course', course_id)
 
 
 
