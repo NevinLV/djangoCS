@@ -30,16 +30,16 @@
                     <div class="desk">{{el.description|truncatewords:50}}</div>
 
                 <div class="tags"></br>
-                    {% for tag in el.tags.all %}
+                    {% for tag in tags %}
                         <div>
-                            {{ tag }}
+                            {{ tag.tag }}
                         </div>
                     {% endfor %}
                 </div>
 
                 <div class="stat">
                     <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
-                    <div class="usercount"> {{ el.users.all.count }}</div>
+                    <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
                 </div>
             </div>
             {% endfor %}

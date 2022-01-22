@@ -26,7 +26,7 @@
 
             </div>
             <input id="tagsinput" name="tags"  type="text" placeholder="Теги (через запятую)"
-            value="{% for tag in el.tags.all %}{{ tag }}, {% endfor %}"></br>
+            value="{% for tag in tags %}{% if tag.course.pk == el.pk %}{{tag.tag}}, {% endif %}{% endfor %}"></br>
 
             <div id="editbtn">
                 <button id="cancelbtn" type="button" onclick="window.location.href = '/main';">Отменить</button>

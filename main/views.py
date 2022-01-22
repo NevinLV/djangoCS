@@ -1,5 +1,5 @@
 import requests
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
@@ -15,11 +15,15 @@ now = datetime.datetime.now()
 def main(request):
     categories = Categories.objects.all()
     courses = Courses.objects.all()
+    course_tags = CoursesTags.objects.all()
+    course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
 
     context = {
         'title': 'Главная',
         'categories': categories,
         'courses': courses,
+        'tags': course_tags,
+        'count_users': course_users,
     }
     return render(request, 'main/main.html', context=context)
 
@@ -52,10 +56,12 @@ def create_course(request):
                     tag = Tags.objects.filter(title=t)
                     if not tag.exists():
                         Tags.objects.create(title=t)
-                        tag = Tags.objects.filter(title=t)
 
                     course.save()
-                    course.tags.add(tag[0])
+
+                    tag = Tags.objects.get(title=t).id
+                    coursetag = CoursesTags(tag_id=tag, course_id=course.id)
+                    coursetag.save()
 
                 return redirect('main')
             except:
@@ -76,6 +82,7 @@ def edit_course(request, course_id):
     all_categories = Categories.objects.all()
     selCourse = Courses.objects.filter(id=course_id)
     selectCourse = Courses.objects.get(id=course_id)
+    course_tags = CoursesTags.objects.all()
 
     if user == selectCourse.author.user or user.is_superuser:
         if request.method == 'POST':
@@ -96,8 +103,10 @@ def edit_course(request, course_id):
                         tag = Tags.objects.filter(title=t)
 
                     if t != '':
-                        if not selectCourse.tags.filter(title=t).exists():
-                            selectCourse.tags.add(tag[0])
+                        if not CoursesTags.objects.filter(tag__title=t, course_id=selectCourse.id).exists():
+                            tag = Tags.objects.get(title=t).id
+                            coursetag = CoursesTags(tag_id=tag, course_id=selectCourse.id)
+                            coursetag.save()
                     selectCourse.save()
 
                 return redirect('main')
@@ -114,6 +123,7 @@ def edit_course(request, course_id):
             'title': 'Редактирование курса',
             'categories': all_categories,
             'course': selCourse,
+            'tags': course_tags,
         }
         return render(request, 'main/editcourse.html', context=context)
     else:
@@ -126,17 +136,21 @@ def edit_course(request, course_id):
 def show_course(request, course_id):
     course = Courses.objects.filter(id=course_id)
     all_categories = Categories.objects.all()
+    course_tags = CoursesTags.objects.filter(course_id=course_id)
 
     user = request.user
-    user_has_course = Courses.objects.filter(users__id=user.id, id=course_id)
+    user_has_course = CoursesUsers.objects.filter(course_id=course_id, user_id=user.id)
+    course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
 
-    print(user_has_course)
+
 
     context = {
         'categories': all_categories,
         'course': course,
         'title': course[0],
         'user_has_course': user_has_course,
+        'tags': course_tags,
+        'count_users': course_users,
     }
 
     return render(request, 'main/course.html', context=context)
@@ -147,6 +161,8 @@ def show_category(request, category_id):
     categories = Categories.objects.filter(id=category_id)
     all_categories = Categories.objects.all()
     courses = Courses.objects.filter(category_id=category_id)
+    course_tags = CoursesTags.objects.all()
+    course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
 
     context = {
         'categories': all_categories,
@@ -154,6 +170,8 @@ def show_category(request, category_id):
         'courses': courses,
         'title': categories[0],
         'category_selected': category_id,
+        'tags': course_tags,
+        'count_users': course_users,
     }
 
     return render(request, 'main/courses.html', context=context)
@@ -196,7 +214,6 @@ class advanced_results(ListView):
             cat = ''
 
         tags_list = tags.lower().split(', ')
-        print(tags_list)
         if tags_list == ['']:
             object_list = Courses.objects.filter(
                 Q(title__icontains=title) &
@@ -205,12 +222,18 @@ class advanced_results(ListView):
                 Q(author__name__icontains=author)
             ).distinct()
         else:
+            courses_has_tag = CoursesTags.objects.filter(Q(tag__title__in=tags_list))
+            courses = []
+            for el in courses_has_tag:
+                courses.append(el.course.id)
+
+            print(courses)
             object_list = Courses.objects.filter(
                 Q(title__icontains=title) &
                 Q(description__icontains=desk) &
                 Q(category__title__icontains=cat) &
                 Q(author__name__icontains=author) &
-                Q(tags__title__in=tags_list)
+                Q(id__in=courses)
             ).distinct()
 
         return object_list
@@ -221,34 +244,62 @@ class results(ListView):
     template_name = 'main/results.html'
 
     def get_queryset(self):
+        categories = Categories.objects.all()
+        course_tags = CoursesTags.objects.all()
+        course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
+
         query = self.request.GET.get('q')
+
+        tags = query
+        tags_list = tags.lower().split(', ')
+        courses_has_tag = CoursesTags.objects.filter(Q(tag__title__in=tags_list))
+        courses = []
+        for el in courses_has_tag:
+            courses.append(el.course.id)
+
         object_list = Courses.objects.filter(
             Q(title__icontains=query) |
             Q(description__icontains=query) |
             Q(category__title__icontains=query) |
             Q(author__name__icontains=query) |
-            Q(tags__title__icontains=query)
+            Q(id__in=courses)
         ).distinct()
+
+        context = {
+            'title': 'Главная',
+            'categories': categories,
+            'object_list': object_list,
+            'tags': course_tags,
+            'count_users': course_users,
+        }
 
         return object_list
 
 
 def delete_course(request, course_id):
-    Courses.objects.get(id=course_id).tags.all().delete()
-    return redirect('main')
+    user = request.user
+    selectCourse = Courses.objects.get(id=course_id)
+    all_categories = Categories.objects.all()
+    if user == selectCourse.author.user or user.is_superuser or course_id == 23:
+        Courses.objects.get(id=course_id).delete()
+        return redirect('main')
+    else:
+        context = {
+            'title': 'Ошибка доступа',
+            'categories': all_categories,
+        }
+        return render(request, 'main/accessisdenied.html', context=context)
 
 
 def sub_course(request, course_id):
     user = request.user
-    usercourse = Courses.objects.get(id=course_id)
-    usercourse.users.add(user)
-
+    usercourse = CoursesUsers(user_id=user.id, course_id=course_id)
+    usercourse.save()
     return redirect('course', course_id)
 
 def unsub_course(request, course_id):
     user = request.user
-    usercourse = Courses.objects.get(id=course_id)
-    usercourse.users.remove(user)
+    CoursesUsers.objects.get(user_id=user.id, course_id=course_id).delete()
 
     return redirect('course', course_id)
 

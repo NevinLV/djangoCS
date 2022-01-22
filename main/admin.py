@@ -8,6 +8,8 @@ from .models import Courses
 from .models import Img
 from .models import Tags
 from .models import Video
+from .models import CoursesTags
+from .models import CoursesUsers
 
 admin.site.register(Authors)
 admin.site.register(Categories)
@@ -15,6 +17,8 @@ admin.site.register(Courses)
 admin.site.register(Img)
 admin.site.register(Tags)
 admin.site.register(Video)
+admin.site.register(CoursesTags)
+admin.site.register(CoursesUsers)
 
 
 

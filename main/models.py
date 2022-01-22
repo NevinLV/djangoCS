@@ -28,24 +28,6 @@ class Categories(models.Model):
     def __str__(self):
         return self.title
 
-# class CourseTag(models.Model):
-#     tag = models.ForeignKey('Tags', models.DO_NOTHING, db_column='Tag_id')  # Field name made lowercase.
-#     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'Course_Tag'
-#
-#
-# class CourseUser(models.Model):
-#     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
-#     user = models.ForeignKey('User', models.DO_NOTHING, db_column='User_id')  # Field name made lowercase.
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'Course_User'
-
-
 class Tags(models.Model):
     title = models.TextField('path')
 
@@ -61,8 +43,8 @@ class Courses(models.Model):
     date = models.TextField('date')
     category = models.ForeignKey(Categories, models.DO_NOTHING, db_column='Category_id')  # Field name made lowercase.
     author = models.ForeignKey(Authors, models.DO_NOTHING, db_column='Author_id')  # Field name made lowercase.
-    tags = models.ManyToManyField(Tags, related_name="course_tags")
-    users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="course_users")
+    # tags = models.ManyToManyField(Tags, related_name="Courses_Tags")
+    # users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Courses_Users")
 
     class Meta:
         db_table = 'Courses'
@@ -71,9 +53,26 @@ class Courses(models.Model):
         return self.title
 
 
+class CoursesTags(models.Model):
+    tag = models.ForeignKey('Tags', on_delete=models.CASCADE, db_column='Tag_id')  # Field name made lowercase.
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, db_column='Course_id')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'Courses_Tags'
+
+
+
+class CoursesUsers(models.Model):
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, db_column='Course_id')  # Field name made lowercase.
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_column='User_id')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'Courses_Users'
+
+
 class Img(models.Model):
     path = models.TextField('path')
-    course = models.ForeignKey(Courses, models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, db_column='Course_id')  # Field name made lowercase.
 
     class Meta:
         db_table = 'Img'
@@ -81,7 +80,7 @@ class Img(models.Model):
 
 class Video(models.Model):
     path = models.TextField('path')
-    course = models.ForeignKey(Courses, models.DO_NOTHING, db_column='Course_id')  # Field name made lowercase.
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, db_column='Course_id')  # Field name made lowercase.
 
     class Meta:
         db_table = 'Video'
