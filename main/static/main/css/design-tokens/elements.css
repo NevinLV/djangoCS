@@ -16,6 +16,24 @@ input{
     display: inline-block;
     color: var(--gray);
 }
+
+.sinput{
+    margin: 0;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.firstline{
+    width: 100%;
+}
+.tline{
+    text-align: right;
+    width: calc(100% + 30px);
+    height: auto;
+}
+.tline select{
+    margin-top: 0;
+}
+
 input:focus{
     background-color: var(--lblack);
     outline: 0;

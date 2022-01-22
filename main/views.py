@@ -192,19 +192,26 @@ class advanced_results(ListView):
         author = self.request.GET.get('author', default='')
         tags = self.request.GET.get('tags', default='')
 
-        tags_list = tags.lower().split(', ')
-
-
         if cat == 'Категория':
             cat = ''
 
-        object_list = Courses.objects.filter(
-            Q(title__icontains=title) &
-            Q(description__icontains=desk) &
-            Q(category__title__icontains=cat) &
-            Q(author__name__icontains=author) &
-            Q(tags__title__in=tags_list)
-        ).distinct()
+        tags_list = tags.lower().split(', ')
+        print(tags_list)
+        if tags_list == ['']:
+            object_list = Courses.objects.filter(
+                Q(title__icontains=title) &
+                Q(description__icontains=desk) &
+                Q(category__title__icontains=cat) &
+                Q(author__name__icontains=author)
+            ).distinct()
+        else:
+            object_list = Courses.objects.filter(
+                Q(title__icontains=title) &
+                Q(description__icontains=desk) &
+                Q(category__title__icontains=cat) &
+                Q(author__name__icontains=author) &
+                Q(tags__title__in=tags_list)
+            ).distinct()
 
         return object_list
 
