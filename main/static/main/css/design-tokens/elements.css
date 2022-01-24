@@ -3,6 +3,102 @@
 #words{
     font-size: 20pt;
 }
+
+.tagsBth{
+    margin-left: calc(100% - 70px);
+    font-size: 19px;
+    width: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    background-color: var(--lblack);
+    color: white;
+}
+
+.tagsBth:hover{
+    background-color: #4f4f4f;
+}
+
+#inputTagsFilter{
+    font-size: var(--p-size);
+    background-color: var(--black);
+    border-radius: 5px;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 0px;
+    margin-left: 0;
+    width: 430px;
+    display: inline-block;
+    color: var(--gray);
+}
+#filterBtn{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+#filterBtn:hover{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #252525;
+}
+
+.filter_application {
+  position: absolute;
+  top: 230px;
+    right: 70px;
+  width: 500px;
+    height: 220px;
+    z-index: 999;
+}
+
+.filter_application .close {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
+.filter_container {
+  position: relative;
+  z-index: 99;
+  background: var(--lblack);
+    height: 110px;
+      padding-left: 20px;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+
+.filter_application:before {
+   content: '';
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   background: url(http://ultraimg.com/images/Ho6hQWs.jpg) center no-repeat;
+  background-size: cover;
+    filter: blur(2px);
+}
+
+.filter_application:after {
+  content: '';
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.filter_container .argueBtn{
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: 40px;
+}
 /* Поля ввода */
 input{
     font-size: var(--p-size);

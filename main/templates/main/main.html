@@ -10,6 +10,10 @@
 
         <div class="List" id="all">
         <h1>Каталог всех курсов</h1>
+            <button class="tagsBth" onclick="toggleFilter(hidden_content_filter)">
+                <img src="{% static 'main/img/filter.png' %}" width="15">
+                Теги
+            </button>
             {% for el in courses%}
                 <div class="card block" id="{{ el.id }}"><div class="author">
                     <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
@@ -91,7 +95,57 @@
                   el.style.display = (el.style.display == 'none') ? '' : 'none';
                 }
             </script>
+
             {% endfor %}
+
+            <section class="filter_application" id="hidden_content_filter" style="display:none;">
+                <div class="filter_container" id="hidden_content_filter">
+                      <input id="inputTagsFilter" holder="Введите теги (через запятую)">
+                      <button onclick="toggleFilter(hidden_content_filter)" id="filterBtn">Применить</button>
+                </div>
+            </section>
+
+            <script>
+                function toggleFilter(el) {
+                  el.style.display = (el.style.display == 'none') ? '' : 'none';
+                  let filterInput = document.querySelector('#inputTagsFilter');
+                  let filterBtn = document.querySelector('#filterBtn');
+                  filterBtn.addEventListener('click', function() {
+                      let inputTags = filterInput.value.split(', ');
+                      inputTags.sort();
+                      console.log(inputTags)
+
+                      function contains(where, what){
+                            for(var i=0; i<what.length; i++){
+                                if(where.indexOf(what[i]) == -1) return false;
+                            }
+                            return true;
+                        }
+
+                      let main = document.querySelector('#all');
+                      let courses = main.querySelectorAll('.card');
+                      for (let course of courses){
+                          course.style.display = 'block';
+                          let tags = course.querySelector('.tags');
+                          let tag = tags.querySelectorAll('div')
+                          let courseTags = [];
+                          for (t of tag){
+                              courseTags.push(t.innerText);
+                          }
+                          courseTags.sort();
+
+                          if (filterInput.value == ''){
+                          course.style.display = 'block';
+                          }
+                          else if(contains(courseTags, inputTags)){
+                              course.style.display = 'block';
+                          }
+                          else course.style.display = 'none';
+                      }
+
+                  });
+                }
+            </script>
         </div>
         </div>
 
