@@ -3,6 +3,27 @@
 #words{
     font-size: 20pt;
 }
+.courseAuthorAvatarProfile{
+    object-fit: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+}
+
+.courseAuthorAvatarProfileFull{
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+    border-radius: 125px;
+}
+
+.courseAuthorAvatarProfileBase{
+    object-fit: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
 
 .tagsBth{
     margin-left: calc(100% - 70px);

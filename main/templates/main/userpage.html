@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
-    <img src="https://img.icons8.com/material/96/ffffff/user-male-circle--v1.png"/>
-    <h1>{{ title }}</h1>
+    {% if user.profile.profile_pic %}
+        <img class="courseAuthorAvatarProfileFull" src="{{user.profile.profile_pic.url}}">
+    {% else %}
+        <img class="courseAuthorAvatarProfileFull" src="{% static 'main/img/user96.png' %}"><br><br>
+    {% endif %}
+
+    <h1>{{ user.profile.name }} {{user.profile.surname }}</h1>
 {% endblock %}

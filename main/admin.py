@@ -10,6 +10,7 @@ from .models import Tags
 from .models import Video
 from .models import CoursesTags
 from .models import CoursesUsers
+from .models import Profile
 
 admin.site.register(Authors)
 admin.site.register(Categories)
@@ -19,6 +20,7 @@ admin.site.register(Tags)
 admin.site.register(Video)
 admin.site.register(CoursesTags)
 admin.site.register(CoursesUsers)
+admin.site.register(Profile)
 
 
 

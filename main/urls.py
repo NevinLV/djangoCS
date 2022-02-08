@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -15,4 +17,5 @@ urlpatterns = [
     path('/search', search_course, name='search_course'),
     path('/results', advanced_results.as_view(), name='adv_results'),
     path('/fastresults', results.as_view(), name='results'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

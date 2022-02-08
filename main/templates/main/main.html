@@ -16,9 +16,14 @@
             </button>
             {% for el in courses%}
                 <div class="card block" id="{{ el.id }}"><div class="author">
-                    <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
+                    {% if user.profile.profile_pic %}
+                      <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
+                    {% else %}
+                      <img class="courseAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
+                    {% endif %}
+
                     <div id="authorname">
-                        {{ el.author }}
+                         {{ el.author.user.profile.name }} {{ el.author.user.profile.surname }}
                     </div>
                     <div class="date"> - {{ el.date }}</div>
                 </div>

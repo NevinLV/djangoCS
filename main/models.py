@@ -18,6 +18,29 @@ class Authors(models.Model):
         return self.name
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, )
+    surname = models.CharField('surname', max_length=80, null=False)
+    name = models.CharField('name', max_length=80, null=False)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    birth_date = models.DateField(null=True, blank=True)
+
+    # @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+    # def create_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Profile.objects.create(user=instance)
+    #
+    # @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+    # def save_user_profile(sender, instance, **kwargs):
+    #     instance.profile.save()
+
+    class Meta:
+        db_table = 'Profile'
+
+    def __str__(self):
+        return self.name
+
+
 class Categories(models.Model):
     title = models.CharField('title', max_length=30, null=False)
 

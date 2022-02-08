@@ -17,9 +17,13 @@
                 {% for el in courses%}
 
                 <div class="card block" id="{{ el.id }}"><div class="author">
-                    <img class="courseAuthorAvatar" src="{%  static 'main/img/user24.png' %}">
+                    {% if user.profile.profile_pic %}
+                      <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
+                    {% else %}
+                      <img class="courseAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
+                    {% endif %}
                     <div id="authorname">
-                        {{ el.author }}
+                         {{ el.author.user.profile.name }} {{ el.author.user.profile.surname }}
                     </div>
                     <div class="date"> - {{ el.date }}</div>
                 </div>
@@ -96,16 +100,8 @@
                   el.style.display = (el.style.display == 'none') ? '' : 'none';
                 }
             </script>
-            {% endfor %}
 
-            <section class="filter_application" id="hidden_content_filter" style="display:none;">
-                <div class="filter_container" id="hidden_content_filter">
-                      <input id="inputTagsFilter" holder="Введите теги (через запятую)">
-                      <button onclick="toggleFilter(hidden_content_filter)" id="filterBtn">Применить</button>
-                </div>
-            </section>
-
-            <script>
+                    <script>
                 function toggleFilter(el) {
                   el.style.display = (el.style.display == 'none') ? '' : 'none';
                   let filterInput = document.querySelector('#inputTagsFilter');
@@ -147,6 +143,15 @@
                   });
                 }
             </script>
+            {% endfor %}
+
+            <section class="filter_application" id="hidden_content_filter" style="display:none;">
+                <div class="filter_container" id="hidden_content_filter">
+                      <input id="inputTagsFilter" holder="Введите теги (через запятую)">
+                      <button onclick="toggleFilter(hidden_content_filter)" id="filterBtn">Применить</button>
+                </div>
+            </section>
+
         </div>
     {% else %}
         <h1>Курсов по категории "{{ title }}" ещё нет.</h1>

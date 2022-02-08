@@ -69,3 +69,34 @@ input:focus{
     background-color: var(--white);
     outline: 0;
 }
+
+#registerData{
+    display: flex;
+}
+
+#registerBlock{
+    height: 300px;
+    position: relative;
+    margin-top: 100px;
+}
+
+#ProfileBlock{
+    height: 400px;
+    position: relative;
+    margin-top: 100px;
+}
+
+#loginData{
+    width: 300px;
+}
+
+#bio{
+    width: 300px;
+}
+
+.regBtn{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
