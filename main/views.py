@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
+from django.core.serializers import serialize
+from django.http import HttpResponse
+
 from .forms import *
 from .models import *
 from django.contrib.auth.models import User
@@ -281,8 +284,13 @@ def delete_course(request, course_id):
     selectCourse = Courses.objects.get(id=course_id)
     all_categories = Categories.objects.all()
     if user == selectCourse.author.user or user.is_superuser or course_id == 23:
+        qs = Courses.objects.filter(id=course_id)
+        data = serialize("json", qs, fields=['title', 'description', 'category', 'date', 'author'])
+
         Courses.objects.get(id=course_id).delete()
-        return redirect('main')
+
+        return HttpResponse(data, content_type="application/json")
+        #return redirect('main')
     else:
         context = {
             'title': 'Ошибка доступа',

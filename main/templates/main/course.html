@@ -86,7 +86,7 @@
                 <p>Вы уверены, что хотите удалить курс? </p>
                     <div class="argueBtn">
                       <button id="not" onclick="toggle(hidden_content_{{ el.pk }})">Нет</button>
-                      <button id="yes" onclick="window.location.href = '{% url 'delete_course' el.pk %}'">Да</button>
+                      <button id="yes" onclick="deleteCourse({{el.pk}}); toggle(hidden_content_{{ el.pk }})">Да</button>
                   </div>
               </div>
             </section>
@@ -94,6 +94,24 @@
             <script>
                 function toggle(el) {
                   el.style.display = (el.style.display == 'none') ? '' : 'none';
+                }
+
+                function deleteCourse(courseId){
+                    let deleteUrl = '/main/course/'+ courseId +'/delete'
+                    fetch(deleteUrl).then(
+                        response => {
+                            return response.text();
+                        }
+                    ).then(
+                        text => {
+                            let json = JSON.parse(text);
+                            for (element of json){
+                                let deletedCourse = document.getElementById(element.pk);
+                                deletedCourse.remove()
+                            }
+                            window.location.href = '/main';
+                        }
+                    );
                 }
             </script>
             {% endfor %}
