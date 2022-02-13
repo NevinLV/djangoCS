@@ -1,0 +1,13 @@
+.navbar-toggler-icon{
+    color: white;
+    fill: var(--gray);
+}
+
+.naviconb{
+    width: 25px;
+    height: 25px;
+}
+
+#homeBtn{
+    color: white;
+}

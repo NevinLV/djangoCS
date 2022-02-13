@@ -1,0 +1,21 @@
+@media screen and (min-width: 768px) {
+    #user{
+        position: absolute;
+        right: 150px;
+        top: 30px;
+    }
+    #createBtn{
+        position: absolute;
+        right: 230px;
+        top: 27px;
+    }
+
+    .navBottom{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+        .navLeft{
+        display: none;
+    }
+}

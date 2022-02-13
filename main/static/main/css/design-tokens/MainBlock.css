@@ -1,0 +1,64 @@
+.navbar{
+    background-color: var(--black);
+
+}
+body{
+    background-color: var(--black);
+}
+
+#user{
+}
+
+
+.nav{
+    margin-top: 10px;
+    color: white;
+    display: flex;
+    transition: 0.3s;
+    width: calc(100% - 50px);
+    -webkit-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+    -moz-box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+    box-shadow: 0px 5px 19px -5px rgba(30, 30, 30, 0.2);
+}
+
+.nav:hover .pointBtn{
+    background: var(--white);
+}
+
+.nav:hover {
+    text-decoration: underline;
+}
+
+h1{
+    font-weight: 100;
+    padding-top: 20px;
+    color: var(--gray);
+}
+
+.pointBtnSelect{
+    background: var(--white);
+}
+.courseTitleSelect{
+    text-decoration: underline;
+}
+
+.courseTitle{
+    margin-left: 10px;
+}
+
+.cline{
+    width: 2px;
+    height: 280px;
+    background-color: #fff;
+}
+
+.navBottom{
+    position: fixed;
+    bottom: 0px;
+    background-color: var(--lblack);
+    color: var(--gray);
+    display: flex;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -30,6 +30,21 @@ def main(request):
     }
     return render(request, 'main/main.html', context=context)
 
+def home(request):
+    categories = Categories.objects.all()
+    courses = Courses.objects.all()
+    course_tags = CoursesTags.objects.all()
+    course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
+
+    context = {
+        'title': 'Главная',
+        'categories': categories,
+        'courses': courses,
+        'tags': course_tags,
+        'count_users': course_users,
+    }
+    return render(request, 'main/home.html', context=context)
+
 
 def create_course(request):
     all_categories = Categories.objects.all()

@@ -1,0 +1,17 @@
+#logo{
+    color: white;
+}
+
+#user{
+    align-items: center;
+    display: flex;
+    flex: none;
+    color: var(--white);
+}
+
+#avatar{
+    padding-right: 10px;
+}
+#username{
+    padding-top: 4px;
+}
