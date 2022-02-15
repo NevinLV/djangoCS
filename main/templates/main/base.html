@@ -4,73 +4,124 @@
     {% load static %}
     {% block style %}{% endblock %}
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{%  static 'main/img/logo_recycle.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href=" {%  static 'main/css/style.css'%}">
     <script src="{%  static 'main/js/index.js' %}"></script>
     <script src="{%  static 'landing/js/init.js' %}"></script>
 </head>
 <body>
-    <header>
-        <div id="logo" onclick="window.location.href = '/main';">
-            <img src="{%  static 'landing/img/logo.png' %}" id="logo_img">
-            <div id="words">COURSE SPACE</div>
-        </div>
+<nav class="navbar fixed-top  navbar-expand-md navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" id="navMen"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="search">
+            <a onclick="window.location.href = '/main/home';" class="navbar-brand fs-5 mb-0 mx-0  ms-0" id="logo">
+                <img src="{%  static 'landing/img/logo.png' %}" id="logo_img" width="25" height="25" class="d-inline-block" alt="" loading="lazy">
+                Course Space
+            </a>
 
-            <div id="input">
-                <form action="{% url 'results' %}" method="get">
-                    <div class="entry">
-                        <input name="q"  type="text" id="name" placeholder="Поиск">
-                     </div>
-                </form>
-            </div>
-
-        </div>
-
-        <div id="rightpart">
-            <button id="addCourse" onclick="window.location.href = '{% url 'create_course' %}'">+ создать курс</button>
-            <div id="user">
-                {% if user.profile.profile_pic %}
-                      <img class="courseAuthorAvatarProfileBase" src="{{user.profile.profile_pic.url}}">
+            <a onclick="window.location.href = '{% url 'user_page' user.pk %}'" class="nav-link ">
+                <div id="user">
+                    {% if user.profile.profile_pic %}
+                        <img class="courseAuthorAvatarProfileBase" src="{{user.profile.profile_pic.url}}">
                     {% else %}
-                      <img class="courseAuthorAvatarProfileBase" src="{% static 'main/img/user96.png' %}"><br><br>
+                        <img class="courseAuthorAvatarProfileBase" src="{% static 'main/img/user96.png' %}"><br><br>
                     {% endif %}
+                </div>
+            </a>
 
-                <div id="username" onclick="window.location.href = '{% url 'user_page' user.pk %}'">{{ user.profile.name }}</div>
-{#            <img src="https://img.icons8.com/ios-filled/25/ffffff/door-opened.png" id="exit"/>#}
+            <div class="collapse navbar-collapse " id="navbarContent">
+
+                <ul class="navbar-nav me-auto ">
+                    <form action="{% url 'results' %}" method="get" class=" fs-6">
+                        <input name="q"  type="text" placeholder="Поиск" class="form-control">
+                    </form>
+                    <li class="nav-item" id="createBtn">
+                        <button class="nav-link" id="addCourse">
+                            + cоздать курс
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-    </header>
-
-    <main>
-        {% if categories %}
-        <div class="List Min" id=Categories>
-            <div class="cline" id="сl1"></div>
-
-            <h1 onclick="window.location.href = '/main';">ВСЕ КУРСЫ</h1>
-            <h1>КАТЕГОРИИ</h1>
-            {% for cat in categories %}
-                {% if cat.title == title %}
-                    <div class="nav" id="c{{ cat.id }}" onclick="window.location.href = '{% url 'category' cat.pk %}'">
-                        <div class="pointBtnSelect"></div>
-                        <div class="courseTitleSelect">{{ cat.title }}</div>
-                    </div>
-                {% else %}
-                    <div class="nav" id="c{{ cat.id }}" onclick="window.location.href = '{% url 'category' cat.pk %}'">
-                        <div class="pointBtn"></div>
-                        <div class="courseTitle">{{ cat.title }}</div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-            <h1 onclick="window.location.href = '{% url 'search_course' %}'">НАЙТИ КУРС</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 menucol">
+            <div class="List Min navLeft" id=Categories>
+        <div class="navLine fs-5" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house navicon" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+              <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+            </svg>
+            <div>Главная</div></div>
+        <div class="navLine fs-5" onclick="window.location.href = '/main';">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder navicon" viewBox="0 0 16 16">
+              <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+            </svg>
+            <div>Все курсы</div></div>
+        <div class="navLine fs-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-tags navicon" viewBox="0 0 16 16">
+              <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+              <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+            </svg>
+            <div>Категории</div></div>
+        <div class="navLine fs-5" onclick="window.location.href = '{% url 'search_course' %}'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search navicon" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <div>Найти курс</div></div>
+    </div>
         </div>
+        <div class="col">
+            {% block content %}
 
-        {% endif %}
-        {% block content %}
+            {% endblock %}
+        </div>
+        </div>
+    </div>
 
-        {% endblock %}
-    </main>
+
+
+
+
+
+
+
+
+        <div class="navBottom container-md" id=Categories>
+        <div class="col fs-6" >
+            <svg id="homeBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill naviconb" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+</svg>
+        </div>
+        <div class="col fs-6" onclick="window.location.href = '/main';">
+            <svg id="AllBtn" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-folder-fil naviconlb" viewBox="0 0 16 16">
+  <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+</svg>
+</div>
+        <div class="col fs-6">
+            <svg id="CategBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags-fill naviconb" viewBox="0 0 16 16">
+  <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+  <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"/>
+</svg>
+</div>
+        <div class="col fs-6" onclick="window.location.href = '{% url 'search_course' %}'">
+            <svg id="SearchBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search naviconb" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
+</div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

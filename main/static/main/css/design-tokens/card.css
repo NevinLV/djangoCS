@@ -1,0 +1,342 @@
+/* Горизонтальные листы */
+.List{
+    display: inline;
+    padding: 0px 20px 20px 20px;
+}
+
+.List.Min{
+    height: auto;
+    color: white;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.List.Min h1:hover{
+    text-decoration: underline;
+}
+
+.List.Min h1{
+    color: white;
+}
+
+
+/* Блоки информации*/
+.block{
+    background-color: var(--lblack);
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px 40px;
+    margin-bottom: 10px;
+    /*-ms-user-select: none;*/
+    /*-moz-user-select: none;*/
+    /*-khtml-user-select: none;*/
+    /*-webkit-user-select: none;*/
+    width: 100%;
+
+-webkit-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cardContainer{
+    display: flex;
+  flex-direction: column;
+    cursor: pointer;
+}
+/* Карты */
+.card{
+    transition: 0.2s;
+    padding: 20px 40px;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+}
+
+        .cardHeader{
+            background-color: #2f2f2f;
+            border-radius: 10px 10px 0 0;
+            height: 50px;
+            position: absolute;
+            top:0;
+            left: 0;
+            padding-left: 40px;
+            padding-top: 15px;
+            color: white;
+            width: 100%;
+        }
+        .card .desk{
+            color: #e3e3e3;
+        }
+        .card .lable{
+            display: flex;
+            position: relative;
+            margin-top: 50px;
+        }
+        /* Заголовок карты */
+        .card .title{
+            font-weight: bold;
+            color: #ffffff;
+        }
+        /* Автор */
+        .card .author{
+            display: flex;
+            color: #b9b9b9;
+            padding: 0;
+            margin-top: 0;
+        }
+        .card .author #authorname{
+            margin-left: 10px;
+        }
+        /* Изображение */
+        .card .img{
+            margin-right: 10px;
+            background-color: var(--lgray);
+            width: 110px;
+            height: 60px;
+            border-radius: 5px;
+            position: absolute;
+            right: 0px;
+
+        }
+        /* Категория */
+        .card .categor{
+            display: flex;
+            color: white;
+            text-align: center;
+            /*margin-bottom: 10px;*/
+        }
+        .categor .categLableText{
+            color: #c4c4c4;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 23px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+        .categor .pointBtn{
+            width: 15px;
+            height: 100%;
+            border-radius: 6px 0 0 6px;
+            border-style: none;
+            margin-right: 7px;
+            margin-left: 0;
+            z-index: 2;
+}
+ /* Теги */
+        .card .tags{
+            margin-top: 60px;
+            flex-wrap: wrap;
+            justify-content: start;
+            align-items: start;
+            align-content: start;
+        }
+
+                .tags > div{
+                    margin-bottom: 4px;
+                    margin-right: 4px;
+                    padding: 8px 15px;
+                    color:var(--gray);
+                    border-radius: 3px;
+                    display: inline;
+                    width: fit-content;
+
+                }
+                .tags > div{
+                    background-color: #2a2a2a;
+                    color: #cccccc;
+                }
+
+        /* Дата */
+        .card .date{
+            margin-left: 10px;
+            display: flex;
+            color: #707070;
+        }
+
+        .card button{
+        }
+
+        .card .stat{
+            display: flex;
+            flex: none;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .card .stat .usercount{
+            margin-left: 5px;
+            padding-top: 2px;
+            margin-right: 10px;
+        }
+
+        .card .stat .go{
+            position: relative;
+            margin-left: 20px;
+            background-color: var(--black);
+            margin-bottom: 4px;
+            margin-right: 4px;
+            padding: 8px 15px;
+            color: white;
+            border-radius: 3px;
+        }
+        .card .stat .go:hover{
+            background-color: var(--lblack);
+        }
+
+        .card .stat .userhascourse{
+            position: relative;
+            margin-left: 20px;
+            background-color: var(--lred);
+            margin-bottom: 4px;
+            margin-right: 4px;
+            padding: 8px 15px;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .card .stat .userhascourse:hover{
+            background-color: var(--llred);
+        }
+
+        .card .courseToolbar{
+            /*border-width: 1px;*/
+            /*border-color: #232323;*/
+            /*border-style: solid;*/
+            /*border-radius: 6px;*/
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            width: auto;
+            height: auto;
+        }
+
+        .card .courseToolbar button{
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: #262626;
+            fill: var(--lblack);
+        }
+        .card .categoryLable{
+            border-radius: 6px 6px 0 6px;
+            width: 200px;
+            height: 80px;
+            background-color: #686868;
+            position: absolute;
+            top: 70px;
+            right: -30px;
+            -webkit-box-shadow: -3px 4px 11px -5px rgba(0, 0, 0, 0.6);
+            -moz-box-shadow: -3px 4px 11px -5px rgba(0, 0, 0, 0.6);
+            box-shadow: -3px 4px 11px -5px rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+        .card .categoryLableBottom{
+            position: absolute;
+            box-shadow: 16px -1px 11px -17px #000000 inset;
+            top: 150px;
+            right: -30px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 29px 0 0;
+            border-color: #565656 transparent transparent transparent;
+            z-index: 1;
+        }
+        .card .courseToolbar button:hover{
+            background-color: var(--black);
+        }
+
+        #edit{
+            border-radius: 6px 0 0 6px;
+        }
+        #coursedelete{
+
+            border-radius: 0 6px 6px 0;
+        }
+
+    .small{
+
+            height: 10px;
+            font-weight: lighter;
+            border-radius: 5px;
+            background-color: var(--black);
+        color: var(--lgray);
+    }
+
+.block:hover{
+    background-color: #383838;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+-moz-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+}
+
+label.form-label{
+    margin-left: 40px;
+}
+
+        .categor  #l1.pointBtn{
+            background: var(--tc1);
+        }
+        .categor #l2.pointBtn {
+            background: var(--tc6);
+        }
+        .categor #l3.pointBtn {
+            background: var(--tc3);
+        }
+        .categor #l4.pointBtn {
+            background: var(--tc4);
+        }
+        .categor #l5.pointBtn {
+            background: var(--tc5);
+        }
+        .categor #l6.pointBtn {
+            background: var(--tc2);
+        }
+        .categor #l7.pointBtn {
+            background: var(--tc7);
+        }
+        .categor #l8.pointBtn {
+            background: var(--tc8);
+        }
+        .categor #l9.pointBtn{
+            background: var(--c9);
+        }
+
+
+#categTag1{
+            background: var(--tc1);
+        }
+#categTag2{
+            background: var(--tc6);
+        }
+#categTag3{
+            background: var(--tc3);
+        }
+#categTag4{
+            background: var(--tc4);
+        }
+#categTag5{
+            background: var(--tc5);
+        }
+#categTag6{
+            background: var(--tc2);
+        }
+#categTag7{
+            background: var(--tc7);
+        }
+#categTag8{
+            background: var(--tc8);
+        }
+#categTag9{
+            background: var(--c9);
+        }
+
+        .card div {
+            display: flex;
+        }

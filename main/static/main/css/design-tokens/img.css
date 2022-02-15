@@ -11,3 +11,19 @@
     border-width: 1px;
     border-color: var(--llblack);
 }
+
+.courseAuthorAvatarProfile{
+    object-fit: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: var(--white);
+}
+
+.courseAuthorAvatarProfileFull{
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+    border-radius: 125px;
+}

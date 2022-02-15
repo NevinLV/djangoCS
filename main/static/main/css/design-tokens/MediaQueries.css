@@ -2,20 +2,50 @@
     #user{
         position: absolute;
         right: 150px;
-        top: 30px;
+        top: 10px;
     }
     #createBtn{
         position: absolute;
         right: 230px;
-        top: 27px;
+        top: 8px;
     }
 
     .navBottom{
         display: none;
     }
+
+    .card .categTag{
+        display: none;
+    }
+
+    .card .lable{
+        width: calc(100% - 210px);
+    }
+    .card .desk{
+        width: calc(100% - 210px);
+    }
 }
 @media screen and (max-width: 768px) {
         .navLeft{
+        display: none;
+    }
+    .nav{
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .menucol{
+        display: none;
+    }
+
+    div.container.pt-3{
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .card .categoryLable{
+        display: none;
+    }
+    .card .categoryLableBottom{
         display: none;
     }
 }

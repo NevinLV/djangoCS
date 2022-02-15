@@ -1,17 +1,5 @@
 @import url(sizes.css);
 
-body{
-    margin: var(--margin-body);
-    padding-top: var(--paddingTop-body);
-    font-family:'Century Gothic';
-    /*background-color: var(--white);*/
-    background-color: var(--black);
-
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-}
 
 main{
     display: flex;
@@ -80,3 +68,4 @@ header{
     height: 30px;
     transform: rotate(-8.19deg);
 }
+
