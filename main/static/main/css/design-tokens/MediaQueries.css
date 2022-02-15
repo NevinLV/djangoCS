@@ -48,4 +48,15 @@
     .card .categoryLableBottom{
         display: none;
     }
+
+    .card{
+        padding: 20px 20px;
+    }
+
+    .cardHeader{
+            padding-left: 20px;
+        }
+    .card .date{
+        display: none;
+    }
 }
