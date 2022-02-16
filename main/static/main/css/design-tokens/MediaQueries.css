@@ -4,6 +4,11 @@
         right: 150px;
         top: 10px;
     }
+    #loginBtn{
+        position: absolute;
+        right: 150px;
+        top: 20px;
+    }
     #createBtn{
         position: absolute;
         right: 230px;

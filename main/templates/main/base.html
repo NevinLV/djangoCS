@@ -27,15 +27,23 @@
                 Course Space
             </a>
 
-            <a onclick="window.location.href = '{% url 'user_page' user.pk %}'" class="nav-link ">
-                <div id="user">
-                    {% if user.profile.profile_pic %}
-                        <img class="courseAuthorAvatarProfileBase" src="{{user.profile.profile_pic.url}}">
-                    {% else %}
-                        <img class="courseAuthorAvatarProfileBase" src="{% static 'main/img/user96.png' %}"><br><br>
-                    {% endif %}
-                </div>
-            </a>
+            {% if user.is_authenticated %}
+                <a onclick="window.location.href = '{% url 'user_page' user.pk %}'" class="nav-link ">
+                    <div id="user">
+                        {% if user.profile.profile_pic %}
+                            <img class="courseAuthorAvatarProfileBase" src="{{user.profile.profile_pic.url}}">
+                        {% else %}
+                            <img class="courseAuthorAvatarProfileBase" src="{% static 'main/img/user96.png' %}"><br><br>
+                        {% endif %}
+                    </div>
+                </a>
+            {% else %}
+                <a onclick="window.location.href = '{% url 'login' %}'" class="nav-link ">
+                    <div id="loginBtn">
+                        Войти
+                    </div>
+                </a>
+            {% endif %}
 
             <div class="collapse navbar-collapse " id="navbarContent">
 
@@ -43,11 +51,13 @@
                     <form action="{% url 'results' %}" method="get" class=" fs-6">
                         <input name="q"  type="text" placeholder="Поиск" class="form-control">
                     </form>
-                    <li class="nav-item" id="createBtn">
-                        <button class="nav-link" id="addCourse">
-                            + cоздать курс
-                        </button>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item" id="createBtn">
+                                <button class="nav-link" id="addCourse">
+                                    + cоздать курс
+                                </button>
+                            </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -57,7 +67,7 @@
         <div class="row">
             <div class="col-2 menucol">
             <div class="List Min navLeft" id=Categories>
-        <div class="navLine fs-5" id="navLineHome">
+        <div class="navLine fs-5" id="navLineHome" onclick="window.location.href ='{% url 'home'%}'">
             {% if title != "Главная"%}
                 <svg id="svgHome" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house navicon" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
