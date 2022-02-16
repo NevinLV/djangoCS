@@ -8,7 +8,6 @@
     {% block list %}
         <div class="container">
             <div class="row">
-                <h1>Все курсы</h1>
                 <button class="tagsBth" onclick="toggleFilter(hidden_content_filter)">
                     <img src="{% static 'main/img/filter.png' %}" width="15">
                     Теги
@@ -41,7 +40,9 @@
                                     <div class="desk fs-5">{{el.description|truncatewords:50}}</div>
 
                                 <div class="tags"></br>
-                                <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
+                                {% if title == 'Главная' %}
+                                    <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
+                                {% endif %}
                                     {% for tag in tags %}
                                         {% if tag.course.pk == el.pk %}
                                         <div>
@@ -58,15 +59,17 @@
 {#                                <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>#}
 {#                                <div class="go" onclick="window.location.href = '{% url 'course' el.pk %}'">ПОДРОБНЕЕ</div>#}
 {#                            </div>#}
-                            <div class="categoryLable">
-                                <div class="categor">
-                                    <div class="pointBtn" id="l{{ el.category.pk }}"></div>
-                                    <div class="categLableText">{{ el.category }}</div>
+                            {% if title == 'Все курсы' %}
+                                <div class="categoryLable" onclick="window.location.href = '{% url 'category' el.category.pk %}'">
+                                    <div class="categor">
+                                        <div class="pointBtn" id="l{{ el.category.pk }}"></div>
+                                        <div class="categLableText">{{ el.category }}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="categoryLableBottom">
+                                <div class="categoryLableBottom">
 
-                            </div>
+                                </div>
+                            {% endif %}
 
                             {% if user == el.author.user %}
                                 <div class = "courseToolbar">

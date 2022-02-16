@@ -1,0 +1,104 @@
+.categCard{
+    background-color: var(--lblack);
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: white;
+    position: relative;
+    padding: 0;
+
+-webkit-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.categCard:hover{
+    background-color: #383838;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+-moz-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
+}
+
+.categIcon svg{
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    transition: 0.2s;
+    fill: #b7b7b7;
+}
+
+.categTitle{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #2f2f2f;
+    border-radius: 0 0 10px 10px;
+    height: 35px;
+    font-weight: 100;
+    transition: 0.2s;
+
+}
+
+.categCard:hover .categIcon #cat1{
+            fill: var(--tc1);
+
+        }
+.categCard:hover .categIcon #cat2{
+            fill: var(--tc6);
+        }
+.categCard:hover .categIcon #cat3{
+            fill: var(--tc3);
+        }
+.categCard:hover .categIcon #cat4{
+            fill: var(--tc4);
+        }
+.categCard:hover .categIcon #cat5{
+            fill: var(--tc5);
+        }
+.categCard:hover .categIcon #cat6{
+            fill: var(--tc2);
+        }
+.categCard:hover .categIcon #cat7{
+            fill: var(--tc7);
+        }
+.categCard:hover .categIcon #cat8{
+            fill: var(--tc8);
+        }
+.categCard:hover .categIcon #cat9{
+            fill: var(--c9);
+        }
+
+
+
+.categCard:hover #catTitle1{
+            color: var(--tc1);
+
+        }
+.categCard:hover  #catTitle2{
+            color: var(--tc6);
+        }
+.categCard:hover  #catTitle3{
+            color: var(--tc3);
+        }
+.categCard:hover  #catTitle4{
+            color: var(--tc4);
+        }
+.categCard:hover  #catTitle5{
+            color: var(--tc5);
+        }
+.categCard:hover  #catTitle6{
+            color: var(--tc2);
+        }
+.categCard:hover  #catTitle7{
+            color: var(--tc7);
+        }
+.categCard:hover  #catTitle8{
+            color: var(--tc8);
+        }
+.categCard:hover  #catTitle9{
+            color: var(--c9);
+        }

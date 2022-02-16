@@ -22,7 +22,7 @@ def main(request):
     course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
 
     context = {
-        'title': 'Главная',
+        'title': 'Все курсы',
         'categories': categories,
         'courses': courses,
         'tags': course_tags,
@@ -164,7 +164,7 @@ def show_course(request, course_id):
 
     context = {
         'categories': all_categories,
-        'course': course,
+        'courses': course,
         'title': course[0],
         'user_has_course': user_has_course,
         'tags': course_tags,
@@ -172,6 +172,16 @@ def show_course(request, course_id):
     }
 
     return render(request, 'main/course.html', context=context)
+
+def show_all_category(request):
+    all_categories = Categories.objects.all()
+
+    context = {
+        'categories': all_categories,
+        'title': 'Категории',
+    }
+
+    return render(request, 'main/categories.html', context=context)
 
 
 def show_category(request, category_id):
