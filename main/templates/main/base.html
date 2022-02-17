@@ -53,7 +53,7 @@
                     </form>
                     {% if user.is_authenticated %}
                         <li class="nav-item" id="createBtn">
-                                <button class="nav-link" id="addCourse">
+                                <button onclick="window.location.href = '{% url 'create_course' %}';" class="nav-link" id="addCourse">
                                     + cоздать курс
                                 </button>
                             </li>

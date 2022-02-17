@@ -36,7 +36,6 @@ input:focus{
 }
 
 select{
-    margin-left: 10px;
     font-size: var(--p-size);
     padding: 10px 15px;
     margin-top: 10px;
@@ -160,4 +159,17 @@ select{
     background-color: var(--lblack);
     border-radius: 5px;
     border: none;
+}
+
+#id_title{
+    width: 100%;
+}
+
+#id_category{
+    width: 100%;
+    margin-top: 5px;
+    height: 34px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    margin-left: 0;
 }
