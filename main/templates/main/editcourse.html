@@ -1,38 +1,40 @@
 {% extends 'main/base.html' %}
 
-
 {% block style %}
     {% load static %}
-    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
 {% endblock %}
 
-<h1>Редактирование курса</h1>
 {% block content %}
-    {% for el in course%}
-        <form action="{% url 'edit_course' el.id %}" method="POST" id="create">
-        {% csrf_token %}
-            <h1>Редактирование курса</h1>
-            <div class="entry">
-                <input name="title" type="text" placeholder="Название курса" value="{{ el.title }}">
-                <select id="search-select" name="cat" type="text" placeholder="{{ el.category }}">
-                    <option>{{ el.category }}</option>
-                    {% for cat in categories %}
-                        {% if cat.title != el.category.title %}
-                            <option>{{ cat.title }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select><br>
-                <textarea name="desk" cols="60" rows="10" id="descriptionInput" type="text" placeholder="Описание">{{ el.description }}</textarea>
-
-            </div>
-            <input id="tagsinput" name="tags"  type="text" placeholder="Теги (через запятую)"
-            value="{% for tag in tags %}{% if tag.course.pk == el.pk %}{{tag.tag}}, {% endif %}{% endfor %}"></br>
-
-            <div id="editbtn">
-                <button id="cancelbtn" type="button" onclick="window.location.href = '/main';">Отменить</button>
-                <button id="yesbtn" type="submit">Изменить</button>
-            </div>
-
-        </form>
-    {% endfor %}
+    <div class="container">
+            {% for el in course%}
+                <div class="row">
+                    <form action="{% url 'edit_course' el.id %}" method="POST" id="edit">
+                        {% csrf_token %}
+                        <h1>Редактирование курса</h1>
+                        <div class="row">
+                            <input  class="sinput col me-md-2 mb-2" name="title" type="text" placeholder="Название курса" value="{{ el.title }}">
+                            <select class="col-md-4 pe-2 mb-2" id="search-select" name="cat" type="text" placeholder="{{ el.category }}">
+                                <option>{{ el.category }}</option>
+                                {% for cat in categories %}
+                                    {% if cat.title != el.category.title %}
+                                        <option>{{ cat.title }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="row mb-2">
+                            <textarea id="DescriptionTextArea" class="sinput col" name="desk" name="desk" cols="60" rows="10" id="descriptionInput" type="text" placeholder="Описание">{{ el.description }}</textarea>
+                        </div>
+                        <div class="row" >
+                            <input class="sinput col mb-2"  name="tags"  type="text" placeholder="Теги (через запятую)"
+                            value="{% for tag in tags %}{% if tag.course.pk == el.pk %}{{tag.tag}}, {% endif %}{% endfor %}">
+                        </div>
+                        <div class="row mb-2 justify-content-end">
+                                <button id="cancel_create_btn" type="button" onclick="window.location.href = '/main';">Отменить</button>
+                                <button id="accept_create_btn" type="submit">Изменить</button>
+                        </div>
+                    </form>
+                </div>
+            {% endfor %}
+    </div>
 {% endblock %}

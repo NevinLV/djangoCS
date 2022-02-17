@@ -96,6 +96,36 @@ select{
     background-color: var(--llblack);
     color: var(--lblack);
     width: 130px;
+    transition: 0.2s;
+}
+#search_course_btn:hover{
+    background-color: var(--gray);
+}
+
+#cancel_create_btn{
+    margin-left: 10px;
+    font-size: var(--p-size);
+    padding: 10px 15px;
+    background-color: var(--llblack);
+    color: var(--lblack);
+    width: 130px;
+    transition: 0.2s;
+}
+#accept_create_btn{
+    margin-left: 10px;
+    font-size: var(--p-size);
+    padding: 10px 15px;
+    background-color: var(--llblack);
+    color: var(--lblack);
+    width: 130px;
+    transition: 0.2s;
+}
+
+#cancel_create_btn:hover{
+    background-color: var(--gray);
+}
+#accept_create_btn:hover{
+    background-color: var(--gray);
 }
 
 #search_course_btn{
