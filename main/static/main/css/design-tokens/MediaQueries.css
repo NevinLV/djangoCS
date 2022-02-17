@@ -32,11 +32,13 @@
      .card .SubBtn{
             display: none;
     }
+
 }
 @media screen and (max-width: 768px) {
         .navLeft{
         display: none;
     }
+
     .nav{
         padding-top: 0;
         margin-top: 0;
@@ -44,7 +46,9 @@
     .menucol{
         display: none;
     }
-
+#search_course_btn{
+    width: 100%;
+}
     div.container.pt-3{
         padding-top: 0;
         margin-top: 0;

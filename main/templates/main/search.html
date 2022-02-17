@@ -5,27 +5,31 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'adv_results' %}" method="get" id="edit">
-        <h1>Поиск</h1>
-        <div class="entry">
-            <div class="firstline">
-               <input class="sinput" name="title" type="text" placeholder="Название курса">
-                <input class="sinput"id="search-author" name="author"  type="text" placeholder="Автор">
+    <div class="container">
+            <div class="row">
+                <form action="{% url 'adv_results' %}" method="get" id="edit">
+                    <h1>Поиск</h1>
+                    <div class="row">
+                        <input class="sinput col me-md-2 mb-2" name="title" type="text" placeholder="Название курса">
+                        <select class="col-md-4 pe-2 mb-2" id="search-select"name="cat" type="text" placeholder="Категория">
+                            <option>Категория</option>
+                            {% for cat in categories %}
+                                <option>{{ cat.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-2">
+                        <textarea id="DescriptionTextArea" class="sinput col" name="desk"  type="text" placeholder="Описание"></textarea>
+                    </div>
+                    <div class="row" >
+                        <input class="sinput col me-md-2 mb-2" name="tags"  type="text" placeholder="Теги (через запятую)">
+                        <input class="sinput col-md-4 mb-2"id="search-author" name="author"  type="text" placeholder="Автор">
+                    </div>
+                    <div class="row mb-2 justify-content-end">
+                            <button id="search_course_btn" type="submit">Поиск</button>
+                    </div>
+                </form>
             </div>
-            <div class="secline">
-                <input class="sinput" name="desk"  type="text" placeholder="Описание">
-                <input class="sinput" name="tags"  type="text" placeholder="Теги (через запятую)">
-            </div>
-        <div class="tline">
-            <select id="search-select"name="cat" type="text" placeholder="Категория">
-                    <option>Категория</option>
-                    {% for cat in categories %}
-                        <option>{{ cat.title }}</option>
-                    {% endfor %}
-            </select>
-            <button id="search_course_btn" type="submit">Поиск</button>
-        </div>
-        </div>
-    </form>
+    </div>
 {% endblock %}
 

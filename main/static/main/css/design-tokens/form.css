@@ -17,9 +17,6 @@ input{
 }
 
 .sinput{
-    margin: 0;
-    margin-bottom: 5px;
-    width: 100%;
 }
 .firstline{
     width: 100%;
@@ -134,7 +131,7 @@ textarea{
     padding: 10px 15px;
     margin-top: 10px;
     margin-left: 0;
-    width: 544px;
+    width: 100px;
     display: inline-block;
     color: var(--gray);
     resize: none;
