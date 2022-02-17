@@ -24,3 +24,12 @@
     width: 16px;
     height: 16px;
 }
+
+.stat{
+    fill: var(--gray);
+    color: var(--gray)
+}
+.stat svg{
+    margin-top: 4px;
+    margin-right: 3px;
+}

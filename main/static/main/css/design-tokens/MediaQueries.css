@@ -29,6 +29,9 @@
     .card .desk{
         width: calc(100% - 210px);
     }
+     .card .SubBtn{
+            display: none;
+    }
 }
 @media screen and (max-width: 768px) {
         .navLeft{
@@ -55,7 +58,10 @@
     }
 
     .card{
-        padding: 20px 20px;
+        padding: 20px 20px 30px 20px;
+    }
+    .card .stat{
+            display: none;
     }
 
     .cardHeader{
