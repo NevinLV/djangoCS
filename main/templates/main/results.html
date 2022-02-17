@@ -1,50 +1,212 @@
 {% extends 'main/base.html' %}
 
-
 {% block style %}
     {% load static %}
-    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
 {% endblock %}
 
 {% block content %}
-    {% if object_list %}
-        <div class="List">
-            <h1>Результаты</h1>
-            {% for el in object_list%}
-                <div class="card block" id="{{ el.id }}" onclick="window.location.href = '{% url 'course' el.pk %}'"><div class="author">
-                    <img class="courseAuthorAvatarProfile" src="{{ el.author.user.profile.img }}">
-                    <div id="authorname">
-                         {{ el.author.user.profile.name }} {{ el.author.user.profile.surname }}
-                    </div>
-                    <div class="date"> - {{ el.date }}</div>
-                </div>
-                <div class="lable">
-                    <div class="text">
-                        <div class="title">{{ el.title }}</div>
-                    </div>
-                    <div class="categor">
-                        <div class="pointBtn" id="l{{ el.category.pk }}"></div>
-                        {{ el.category }}
-                    </div>
-                </div>
-                    <div class="desk">{{el.description|truncatewords:50}}</div>
+    {% block list %}
 
-                <div class="tags"></br>
-                    {% for tag in tags %}
-                        <div>
-                            {{ tag.tag }}
-                        </div>
+        {% if object_list %}
+            <div class="container">
+                <div class="row">
+                    <button class="tagsBth" onclick="toggleFilter(hidden_content_filter)">
+                        <img src="{% static 'main/img/filter.png' %}" width="15">
+                        Теги
+                    </button>
+                </div>
+
+                <div class="row">
+                    {% for el in object_list%}
+                                <div class="card block" id="{{ el.id }}">
+                                    <div class="cardHeader">
+                                        <div class="author">
+                                        {% if user.profile.profile_pic %}
+                                          <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
+                                        {% else %}
+                                          <img class="courseAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
+                                        {% endif %}
+                                        <div id="authorname">
+                                             {{ el.author.user.profile.name }} {{ el.author.user.profile.surname }}
+                                        </div>
+                                </div>
+                                        <div class="date"> - {{ el.date }}</div>
+                                    </div>
+
+                                <div class="cardContainer"  onclick="window.location.href ='{% url 'course' el.pk %}'">
+                                    <div class="lable">
+                                        <div class="text">
+                                            <div class="title fs-1">{{ el.title }}</div>
+                                        </div>
+                                    </div>
+                                        <div class="desk fs-5">{{el.description|truncatewords:50}}</div>
+
+                                    <div class="tags"></br>
+                                    {% if title == 'Главная' %}
+                                        <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
+                                    {% endif %}
+                                        {% for tag in tags %}
+                                            {% if tag.course.pk == el.pk %}
+                                            <div>
+                                                {{ tag.tag }}
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+
+                                <div class="stat">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                      <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                      <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                                    </svg>
+                                    <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
+                                </div>
+                                {% if title == 'Все курсы' %}
+                                    <div class="categoryLable" onclick="window.location.href = '{% url 'category' el.category.pk %}'">
+                                        <div class="categor">
+                                            <div class="pointBtn" id="l{{ el.category.pk }}"></div>
+                                            <div class="categLableText">{{ el.category }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="categoryLableBottom">
+
+                                    </div>
+                                {% endif %}
+
+                                {% if user == el.author.user %}
+                                    <div class = "courseToolbar">
+                                        <button class = "toolBtn" id="edit" onclick="window.location.href = '{% url 'edit_course' el.pk  %}'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill editBtn" viewBox="0 0 16 16">
+                                              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                            </svg>
+                                        </button>
+                                        <button class = "toolBtn" id="coursedelete" onclick="toggle(hidden_content)_{{ el.pk }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill deleteBtn" viewBox="0 0 16 16">
+                                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                {% elif user.is_superuser %}
+                                    <div class = "courseToolbar">
+                                        <button class = "toolBtn" id="edit" onclick="window.location.href = '{% url 'edit_course' el.pk  %}'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill editBtn" viewBox="0 0 16 16">
+                                              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                            </svg>
+                                        </button>
+                                        <button class = "toolBtn" id="coursedelete" onclick="toggle(hidden_content)_{{ el.pk }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill deleteBtn" viewBox="0 0 16 16">
+                                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                {% elif el.pk == 23 %}
+                                    <div class = "courseToolbar">
+                                        <button class = "toolBtn" id="edit" onclick="window.location.href = '{% url 'edit_course' el.pk  %}'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill editBtn" viewBox="0 0 16 16">
+                                              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                            </svg>
+                                        </button>
+                                        <button class = "toolBtn" id="coursedelete" onclick="toggle(hidden_content)_{{ el.pk }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill deleteBtn" viewBox="0 0 16 16">
+                                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            <section class="application" id="hidden_content_{{ el.pk }}" style="display:none;">
+                                <div class="containerAlert">
+                                <h2>Удаление курса!</h2>
+                                <p>Вы уверены, что хотите удалить курс? </p>
+                                    <div class="argueBtn">
+                                      <button id="not" onclick="toggle(hidden_content_{{ el.pk }})">Нет</button>
+                                      <button id="yes" onclick="deleteCourse({{el.pk}}); toggle(hidden_content_{{ el.pk }})">Да</button>
+                                  </div>
+                              </div>
+                            </section>
+
+                            <script>
+                                function toggle(el) {
+                                  el.style.display = (el.style.display == 'none') ? '' : 'none';
+                                }
+
+                                function deleteCourse(courseId){
+                                    let deleteUrl = '/main/course/'+ courseId +'/delete'
+                                    fetch(deleteUrl).then(
+                                        response => {
+                                            return response.text();
+                                        }
+                                    ).then(
+                                        text => {
+                                            let json = JSON.parse(text);
+                                            for (element of json){
+                                                let deletedCourse = document.getElementById(element.pk);
+                                                deletedCourse.remove()
+                                            }
+                                        }
+                                    );
+                                }
+                            </script>
+
+                                    <script>
+                                function toggleFilter(el) {
+                                  el.style.display = (el.style.display == 'none') ? '' : 'none';
+                                  let filterInput = document.querySelector('#inputTagsFilter');
+                                  let filterBtn = document.querySelector('#filterBtn');
+                                  filterBtn.addEventListener('click', function() {
+                                      let inputTags = filterInput.value.split(', ');
+                                      inputTags.sort();
+                                      console.log(inputTags)
+
+                                      function contains(where, what){
+                                            for(var i=0; i<what.length; i++){
+                                                if(where.indexOf(what[i]) == -1) return false;
+                                            }
+                                            return true;
+                                        }
+
+                                      let main = document.querySelector('#all');
+                                      let courses = main.querySelectorAll('.card');
+
+                                      for (let course of courses){
+                                          course.style.display = 'block';
+                                          let tags = course.querySelector('.tags');
+                                          let tag = tags.querySelectorAll('div')
+                                          let courseTags = [];
+                                          for (t of tag){
+                                              courseTags.push(t.innerText);
+                                          }
+                                          courseTags.sort();
+
+                                          if (filterInput.value == ''){
+                                          course.style.display = 'block';
+                                          }
+                                          else if(contains(courseTags, inputTags)){
+                                              course.style.display = 'block';
+                                          }
+                                          else course.style.display = 'none';
+                                      }
+
+                                  });
+                                }
+                            </script>
                     {% endfor %}
-                </div>
-
-                <div class="stat">
-                    <img  src="https://img.icons8.com/material-rounded/24/000000/conference-background-selected.png"/>
-                    <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
+                    <section class="filter_application" id="hidden_content_filter" style="display:none;">
+                        <div class="filter_container">
+                            <input id="inputTagsFilter" holder="Введите теги (через запятую)">
+                            <button onclick="toggleFilter(hidden_content_filter)" id="filterBtn">Применить</button>
+                        </div>
+                    </section>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <h1>Ничего не найдено</h1>
-    {% endif %}
+        {% else %}
+            <h1>Ничего не найдено</h1>
+        {% endif %}
+    {% endblock %}
 {% endblock %}
+
+

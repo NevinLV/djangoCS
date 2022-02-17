@@ -40,7 +40,7 @@
                                     <div class="desk fs-5">{{el.description|truncatewords:50}}</div>
 
                                 <div class="tags"></br>
-                                {% if title == 'Главная' %}
+                                {% if title == 'Все курсы' %}
                                     <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
                                 {% endif %}
                                     {% for tag in tags %}

@@ -66,7 +66,7 @@ h1{
 .navBottom{
     position: fixed;
     bottom: 0px;
-    background-color: var(--lblack);
+    background-color: #2c2c2c;
     color: var(--gray);
     display: flex;
     text-align: center;
