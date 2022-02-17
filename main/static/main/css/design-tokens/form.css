@@ -163,6 +163,7 @@ select{
 
 #id_title{
     width: 100%;
+    margin-bottom: 0;
 }
 
 #id_category{

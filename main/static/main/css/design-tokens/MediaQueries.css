@@ -74,4 +74,10 @@
     .card .date{
         display: none;
     }
+    #id_category{
+    margin-top: 0;
+    }
+    #add_course{
+        width: 100%;
+    }
 }
