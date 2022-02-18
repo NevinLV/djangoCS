@@ -2,22 +2,38 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-    <div class="block" id="registerBlock">
-        <p class="title">{{ title }}</p>
+    <div class="container">
+        <div class="row d-flex justify-content-center " id="inputData">
+            <h1 class="title d-flex justify-content-center">{{ title }}</h1>
 
-        <form method="POST" id="registerData">
-            {% csrf_token %}
-            <div id="loginData">
-                {{ form.username }}
-                {{ form.email }}
-                {{ form.password1 }}
-                {{ form.password2 }}
-            </div>
-
-            <div id="bthSection">
-                <button class="regBtn" type="submit" id=go>Продолжить</button>
-            </div>
-        </form>
+            <form method="POST" >
+                {% csrf_token %}
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.password1 }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <button class="loginBtn" type="submit">Продолжить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-
 {% endblock %}

@@ -19,10 +19,10 @@ class UserLoginForm(AuthenticationForm):
 ))
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Логин'}))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Повтор пароля'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class' : 'loginInput', 'placeholder': 'Логин'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class' : 'loginInput', 'placeholder': 'E-mail'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class' : 'loginInput', 'placeholder': 'Пароль'}))
+    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class' : 'loginInput', 'placeholder': 'Повтор пароля'}))
 
     class Meta:
         model = User
