@@ -42,6 +42,16 @@ box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
     transition: 0.2s;
 
 }
+.categTitleSm{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #2f2f2f;
+    border-radius: 0 0 10px 10px;
+    height: 30px;
+    font-weight: 100;
+    transition: 0.2s;
+}
 
 .categCard:hover .categIcon #cat1{
             fill: var(--tc1);
@@ -101,4 +111,60 @@ box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
         }
 .categCard:hover  #catTitle9{
             color: var(--c9);
+        }
+
+.categIconSm{
+    background-color: var(--lblack);
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: white;
+    position: relative;
+    padding: 0;
+    width: 100%;
+
+    -webkit-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.categIconSm svg{
+    width: 25px;
+    height: 25px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    transition: 0.2s;
+    fill: #b7b7b7;
+}
+
+.categCard:hover .categIconSm #cat1{
+            fill: var(--tc1);
+
+        }
+.categCard:hover .categIconSm #cat2{
+            fill: var(--tc6);
+        }
+.categCard:hover .categIconSm #cat3{
+            fill: var(--tc3);
+        }
+.categCard:hover .categIconSm #cat4{
+            fill: var(--tc4);
+        }
+.categCard:hover .categIconSm #cat5{
+            fill: var(--tc5);
+        }
+.categCard:hover .categIconSm #cat6{
+            fill: var(--tc2);
+        }
+.categCard:hover .categIconSm #cat7{
+            fill: var(--tc7);
+        }
+.categCard:hover .categIconSm #cat8{
+            fill: var(--tc8);
+        }
+.categCard:hover .categIconSm #cat9{
+            fill: var(--c9);
         }
