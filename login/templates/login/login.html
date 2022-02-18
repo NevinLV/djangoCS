@@ -2,20 +2,28 @@
 {% block title %}Вход{% endblock %}
 
 {% block content %}
-    <div class="block" id="inputData">
-        <p class="title">{{ title }}</p>
+    <div class="container">
+        <div class="row d-flex justify-content-center " id="inputData">
+            <h1 class="title d-flex justify-content-center">{{ title }}</h1>
 
-        <form method="POST" >
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div id="bthSection">
-                <button id=forgPass>Забыли пароль?</button>
-                <button type="submit" id=go>ВОЙТИ</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="block" id="registerBtn">
-        <p>Ещё не с нами?</p>
+            <form method="POST" >
+                {% csrf_token %}
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <button class="loginBtn" type="submit">ВОЙТИ</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

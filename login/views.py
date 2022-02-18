@@ -7,12 +7,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from login.forms import RegisterUserForm, CreateProfileForm
+from login.forms import RegisterUserForm, CreateProfileForm, UserLoginForm
 from main.models import Profile
 
 
 class LoginUser(LoginView):
-    form_class = AuthenticationForm
+    form_class = UserLoginForm
     template_name = 'login/login.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):

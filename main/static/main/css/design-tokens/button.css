@@ -40,3 +40,16 @@ button:active {
     margin-right: 0;
     margin-left: auto;
 }
+
+.loginBtn{
+    margin-top: 10px;
+    border-radius: 6px 6px 6px 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--llblack);
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--llblack);
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

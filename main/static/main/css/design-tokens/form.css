@@ -204,3 +204,7 @@ select{
     padding-bottom: 3px;
     margin-left: 0;
 }
+
+.loginInput{
+    width: 100%;
+}
