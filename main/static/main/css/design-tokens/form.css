@@ -208,3 +208,18 @@ select{
 .loginInput{
     width: 100%;
 }
+
+.regLable{
+    color: #c9c9c9;
+}
+
+#id_birth_date{
+    width: 100%;
+}
+#id_profile_pic{
+    width: 100%;
+}
+
+#id_profile_pic button{
+    background-color: #8c1c1c;
+}

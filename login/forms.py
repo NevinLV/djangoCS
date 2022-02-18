@@ -30,8 +30,8 @@ class RegisterUserForm(UserCreationForm):
 
 
 class CreateProfileForm(forms.ModelForm):
-    name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'placeholder': 'Имя'}))
-    surname = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'placeholder': 'Фамилия'}))
+    name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class' : 'loginInput', 'placeholder': 'Имя'}))
+    surname = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class' : 'loginInput', 'placeholder': 'Фамилия'}))
     #birth_date = forms.DateField(label='Дата рождения')
     profile_pic = forms.ImageField(label='Фото профиля')
 
