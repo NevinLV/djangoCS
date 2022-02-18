@@ -80,4 +80,8 @@
     #add_course{
         width: 100%;
     }
+    #filter_course_btn{
+        margin-top: 10px;
+        height: 30px;
+    }
 }

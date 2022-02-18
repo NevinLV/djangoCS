@@ -93,3 +93,10 @@ h1{
 .navLine:hover{
     background-color: #282828;
 }
+
+.navBottom{
+    -webkit-box-shadow: 0px 11px 13px 19px rgba(0, 0, 0, 0.09);
+-moz-box-shadow: 0px 11px 13px 19px rgba(0, 0, 0, 0.09);
+box-shadow: 0px 11px 13px 19px rgba(0, 0, 0, 0.09);
+    z-index: 99;
+}
