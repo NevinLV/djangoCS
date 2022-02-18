@@ -8,13 +8,6 @@
     {% block list %}
         <div class="container">
             <div class="row">
-                <button class="tagsBth" onclick="toggleFilter(hidden_content_filter)">
-                    <img src="{% static 'main/img/filter.png' %}" width="15">
-                    Теги
-                </button>
-            </div>
-
-            <div class="row">
                 {% for el in courses%}
                             <div class="card block" id="{{ el.id }}">
                                 <div class="cardHeader">

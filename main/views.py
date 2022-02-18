@@ -224,9 +224,7 @@ def search_course(request):
     }
     return render(request, 'main/search.html', context=context)
 
-
-
-class advanced_results(ListView):
+class course_filter(ListView):
     model = Courses
     template_name = 'main/results.html'
 
@@ -264,6 +262,48 @@ class advanced_results(ListView):
                 Q(id__in=courses)
             ).distinct()
 
+        return object_list
+
+class advanced_results(ListView):
+    model = Courses
+    template_name = 'main/results.html'
+
+
+    def get_queryset(self):
+        title = self.request.GET.get('title', default='')
+        desk = self.request.GET.get('desk', default='')
+        cat = self.request.GET.get('cat', default='')
+        author = self.request.GET.get('author', default='')
+        tags = self.request.GET.get('tags', default='')
+
+        if cat == 'Категория':
+            cat = ''
+
+        tags_list = tags.lower().split(', ')
+        if tags_list == ['']:
+            object_list = Courses.objects.filter(
+                Q(title__icontains=title) &
+                Q(description__icontains=desk) &
+                Q(category__title__icontains=cat) &
+                Q(author__name__icontains=author)
+            ).distinct()
+        else:
+            courses_has_tag = CoursesTags.objects.filter(Q(tag__title__in=tags_list))
+            courses = []
+            for el in courses_has_tag:
+                courses.append(el.course.id)
+
+            # print(courses)
+            object_list = Courses.objects.filter(
+                Q(title__icontains=title) &
+                Q(description__icontains=desk) &
+                Q(category__title__icontains=cat) &
+                Q(author__name__icontains=author) &
+                Q(id__in=courses)
+            ).distinct()
+
+        print('object_list: ')
+        print(object_list)
         return object_list
 
 

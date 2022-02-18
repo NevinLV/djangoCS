@@ -8,17 +8,34 @@
     {% block list %}
         <div class="container">
             <div class="row">
-                <button class="tagsBth" onclick="toggleFilter(hidden_content_filter)">
+                <button class="tagsBth" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <img src="{% static 'main/img/filter.png' %}" width="15">
-                    Теги
+                        Фильтры
                 </button>
             </div>
-            <section class="filter_application" id="hidden_content_filter" style="display:none;">
-                        <div class="filter_container">
-                            <input id="inputTagsFilter" holder="Введите теги (через запятую)">
-                            <button onclick="toggleFilter(hidden_content_filter)" id="filterBtn">Применить</button>
+
+            <div class="collapse row" id="collapseExample">
+                    <div class="container filterContainer">
+                        <div class="row  p-2">
+                            <form action="{% url 'adv_results' %}" method="get" id="edit">
+                                <div class="row">
+                                    <input class="sinput col me-md-2 mb-2" name="title" type="text" placeholder="Название курса">
+                                    <input class="sinput col-md-4 mb-2 me-2"id="search-author" name="author"  type="text" placeholder="Автор">
+                                    <select class="col-md-4 pe-2 mb-2 " id="search-select"name="cat" type="text" placeholder="Категория">
+                                        <option>Категория</option>
+                                        {% for cat in categories %}
+                                            <option>{{ cat.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="row" >
+                                    <input class="sinput col me-md-2" name="tags"  type="text" placeholder="Теги (через запятую)">
+                                    <button class="sinput col-md-1"id="filter_course_btn" type="submit">применить</button>
+                                </div>
+                            </form>
                         </div>
-            </section>
+                    </div>
+            </div>
 
             <div class="row">
                 {% for el in courses%}
