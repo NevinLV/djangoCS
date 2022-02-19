@@ -78,9 +78,14 @@
             color: #b9b9b9;
             padding: 0;
             margin-top: 0;
+            cursor: pointer;
         }
         .card .author #authorname{
             margin-left: 10px;
+        }
+
+        .card .author:hover #authorname{
+            text-decoration: underline;
         }
         /* Изображение */
         .card .img{
