@@ -35,14 +35,19 @@ def home(request):
     courses = Courses.objects.all()
     course_tags = CoursesTags.objects.all()
     course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
+
     author_users_count = CoursesUsers.objects.values('course__author__user_id').annotate(total=Count('id')).order_by('-total')[:3]
     author_users_count_list = list(author_users_count)
     top_authors = []
     for user in author_users_count_list:
         top_authors.append(User.objects.get(id=user['course__author__user_id']))
 
-    author_course_count = Courses.objects.values('author__user').annotate(total=Count('id'))
-    #print(author_users_count_list)
+    course_users_count = CoursesUsers.objects.values('course_id').annotate(total=Count('id')).order_by('-total')[:3]
+    course_users_count_list = list(course_users_count)
+    top_course = []
+    for course in course_users_count_list:
+        top_course.append(Courses.objects.get(id=course['course_id']))
+
 
     context = {
         'title': 'Главная',
@@ -51,6 +56,7 @@ def home(request):
         'tags': course_tags,
         'count_users': course_users,
         'top_authors': top_authors,
+        'top_course' : top_course,
     }
     return render(request, 'main/home.html', context=context)
 

@@ -1,5 +1,5 @@
 .authorCard{
-    background-color: #9f9f9f;
+    background-color: var(--lblack);
     border-radius: 10px;
     text-align: center;
     margin-right: 10px;
@@ -16,7 +16,7 @@ box-shadow: 0px 4px 14px 2px rgba(0, 0, 0, 0.3);
 }
 
 .authorCard:hover{
-    background-color: #ababab;
+    background-color: #383838;
     -webkit-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
 -moz-box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
 box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
@@ -37,7 +37,7 @@ box-shadow: 0px 0px 10px 1px rgba(26, 26, 26, 0.3);
 .authorTitle{
     margin-right: 0px;
     margin-left: 0px;
-    background-color: #808080;
+    background-color: #2f2f2f;
     border-radius: 0 0 10px 10px;
     height: 30px;
     font-weight: 100;

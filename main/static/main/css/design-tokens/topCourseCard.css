@@ -1,0 +1,26 @@
+.topCourse{
+    height: 100%;
+}
+
+.topCourse .lable{
+    width: 100%;
+}
+.topCourse .title{
+    width: 100%;
+}
+
+.topCourse .desk{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.topCourse .stat{
+    bottom: 8px;
+}
+
+.topCourse .tags{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+
+}
