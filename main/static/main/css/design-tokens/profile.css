@@ -1,0 +1,144 @@
+.usernameProfile{
+    text-align: center;
+    color: white;
+    font-weight: 100;
+}
+
+.profileheader{
+    background-color: #2f2f2f;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px 40px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.userInfoHeader{
+    background-color: #2f2f2f;
+    border-radius: 10px 10px 0 0;
+    height: 50px;
+    color: white;
+    width: 100%;
+}
+
+.userInfoHeader > div{
+    text-align: center;
+    color: var(--white);
+}
+
+.userInfoBody{
+    background-color: var(--lblack);
+    border-radius: 0 0 10px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+
+}
+
+.profileCard{
+    padding: 10px 10px 40px 10px;
+    margin: 0;
+    width: 100%;
+    border-color: #2f2f2f;
+    border-style: solid none none none;
+    border-width: 2px;
+    position: relative;
+}
+
+.profileCard .title{
+    color: white;
+    font-weight: bold;
+}
+.profileCard .desk{
+    color: #c9c9c9;
+}
+
+ .profileCard .tags{
+            margin-top: 60px;
+            flex-wrap: wrap;
+            justify-content: start;
+            align-items: start;
+            align-content: start;
+        }
+
+                .tags > div{
+                    margin-bottom: 4px;
+                    margin-right: 4px;
+                    padding: 8px 15px;
+                    color:var(--gray);
+                    border-radius: 3px;
+                    display: inline;
+                    width: fit-content;
+
+                }
+                .tags > div{
+                    background-color: #2a2a2a;
+                    color: #cccccc;
+                }
+
+.profileCard .stat{
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            display: flex;
+            flex: none;
+            align-items: center;
+            justify-content: flex-end;
+            width: fit-content;
+            padding: 3px 12px;
+        }
+        .profileCard .stat .usercount{
+            padding-top: 2px;
+            margin-left: 10px;
+        }
+
+        .profileCard .courseToolbar{
+            /*border-width: 1px;*/
+            /*border-color: #232323;*/
+            /*border-style: solid;*/
+            /*border-radius: 6px;*/
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            width: auto;
+            height: auto;
+        }
+
+        .profileCard .courseToolbar button{
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: #2f2f2f;
+            fill: var(--lblack);
+
+        }
+
+        #userSubCourseBody{
+            display: none;
+        }
+
+        #userAuthorCourse{
+            border-radius: 10px 0 0 0;
+            background-color: var(--lblack);
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        #userSubCourse{
+            cursor: pointer;
+            border-radius: 0 10px 0 0;
+            background-color: #2f2f2f;
+            color: var(--gray);
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+        }

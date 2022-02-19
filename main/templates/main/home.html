@@ -152,7 +152,7 @@
         <div class="row">
             <h1>Популярные авторы:</h1>
             {% for author in top_authors %}
-                <div class="authorCard col-md">
+                <div class="authorCard col-md" onclick="window.location.href = '{% url 'user_page' author.pk %}'">
                     <div class="row d-flex justify-content-center">
                         {% if user.profile.profile_pic %}
                             <img class="topAuthorAvatarProfile" src="{{author.profile.profile_pic.url}}">

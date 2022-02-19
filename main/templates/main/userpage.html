@@ -3,15 +3,129 @@
 
 {% block style %}
     {% load static %}
-    <link rel="stylesheet" href=" {%  static 'main/css/main.css'%}">
 {% endblock %}
 
 {% block content %}
-    {% if user.profile.profile_pic %}
-        <img class="courseAuthorAvatarProfileFull" src="{{user.profile.profile_pic.url}}">
-    {% else %}
-        <img class="courseAuthorAvatarProfileFull" src="{% static 'main/img/user96.png' %}"><br><br>
-    {% endif %}
+    <div class="container">
+        <div class="row justify-content-center profileheader">
+            <div class="row justify-content-center">
+                {% if user.profile.profile_pic %}
+                    <img class="courseAuthorAvatarProfileFull" src="{{user.profile.profile_pic.url}}">
+                {% else %}
+                    <img class="courseAuthorAvatarProfileFull" src="{% static 'main/img/user96.png' %}"><br><br>
+                {% endif %}
+            </div>
+            <div class="row justify-content-center usernameProfile fs-1">
+                {{ user.profile.name }} {{user.profile.surname }}
+            </div>
+        </div>
+    </div>
 
-    <h1>{{ user.profile.name }} {{user.profile.surname }}</h1>
+    <div class="container">
+        <div class="row userInfoHeader">
+            <div class="col userInfoBtn" id="userAuthorCourse">
+                Авторство
+            </div>
+            <div class="col userInfoBtn" id="userSubCourse">
+                Подписки
+            </div>
+        </div>
+        <div class="row userInfoBody" id="userAuthorCourseBody">
+            {% for el in author_course%}
+                <div class="row profileCard" id="{{ el.id }}">
+                    <div class="cardContainer"  onclick="window.location.href ='{% url 'course' el.pk %}'">
+                        <div class="lable">
+                            <div class="text">
+                                <div class="title fs-1">{{ el.title }}</div>
+                            </div>
+                        </div>
+                        <div class="desk fs-5">{{el.description|truncatewords:50}}</div>
+
+                        <div class="tags"></br>
+                            <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
+                            {% for tag in tags %}
+                                {% if tag.course.pk == el.pk %}
+                                    <div>
+                                        {{ tag.tag }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                        <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row userInfoBody" id="userSubCourseBody">
+            {% for el in sub_course%}
+                <div class="row profileCard" id="{{ el.id }}">
+                    <div class="cardContainer"  onclick="window.location.href ='{% url 'course' el.pk %}'">
+                        <div class="lable">
+                            <div class="text">
+                                <div class="title fs-1">{{ el.title }}</div>
+                            </div>
+                        </div>
+                        <div class="desk fs-5">{{el.description|truncatewords:50}}</div>
+
+                        <div class="tags"></br>
+                            <div class="categTag" id="categTag{{ el.category.pk }}">{{ el.category }}</div>
+                            {% for tag in tags %}
+                                {% if tag.course.pk == el.pk %}
+                                    <div>
+                                        {{ tag.tag }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                        <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <script>
+        let author_course = document.querySelector("#userAuthorCourseBody");
+        let sub_course = document.querySelector("#userSubCourseBody")
+
+        let author_course_btn = document.querySelector("#userAuthorCourse");
+        let sub_course_btn = document.querySelector("#userSubCourse");
+
+        author_course_btn.addEventListener('click', function() {
+            sub_course.style.display = 'none';
+            author_course.style.display = 'block';
+            author_course_btn.style.backgroundColor = 'var(--lblack)';
+            sub_course_btn.style.backgroundColor = '#2f2f2f';
+            sub_course_btn.style.color = 'var(--gray)';
+            author_course_btn.style.color = 'white';
+        });
+
+        sub_course_btn.addEventListener('click', function() {
+            author_course.style.display = 'none';
+            sub_course.style.display = 'block';
+            sub_course_btn.style.backgroundColor = 'var(--lblack)';
+            sub_course_btn.style.color = 'white';
+            author_course_btn.style.backgroundColor = '#2f2f2f';
+            author_course_btn.style.color = 'var(--gray)';
+        });
+    </script>
+
 {% endblock %}
