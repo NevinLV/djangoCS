@@ -42,7 +42,7 @@
                             <div class="card block" id="{{ el.id }}">
                                 <div class="cardHeader">
                                     <div class="author" onclick="window.location.href = '{% url 'user_page' el.author.user.pk %}'">
-                                    {% if user.profile.profile_pic %}
+                                    {% if el.author.user.profile.profile_pic %}
                                       <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
                                     {% else %}
                                       <img class="courseAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
