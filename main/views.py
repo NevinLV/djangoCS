@@ -222,9 +222,19 @@ def show_category(request, category_id):
 
 def show_user_page(request, user_id):
     user = User.objects.filter(id=user_id)
+    course_users = CoursesUsers.objects.values('course_id').annotate(total=Count('id'))
+
+    author_course = Courses.objects.filter(author__user_id=user_id)
+    sub_course = Courses.objects.filter(coursesusers__user_id=user_id)
+
+    course_tags = CoursesTags.objects.all()
 
     context = {
+        'author_course': author_course,
+        'sub_course': sub_course,
         'title': user[0],
+        'count_users': course_users,
+        'tags': course_tags,
     }
 
     return render(request, 'main/userpage.html', context=context)

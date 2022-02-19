@@ -49,7 +49,7 @@
                     {% for el in object_list%}
                                 <div class="card block" id="{{ el.id }}">
                                     <div class="cardHeader">
-                                        <div class="author">
+                                        <div class="author" onclick="window.location.href = '{% url 'user_page' el.author.user.pk %}'">
                                         {% if user.profile.profile_pic %}
                                           <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
                                         {% else %}
