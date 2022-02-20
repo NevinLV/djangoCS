@@ -1,7 +1,4 @@
 @import url(../../main/css/design-tokens/colors.css);
-@import url(../../main/css/design-tokens/elements.css);
-@import url(../../main/css/design-tokens/sizes.css);
-
 
 body{
     background-color: var(--black);
