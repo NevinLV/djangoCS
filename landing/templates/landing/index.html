@@ -1,82 +1,95 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    {% load static %}
-    <link rel="stylesheet" href=" {%  static 'landing/css/landing.css' %}">
     <meta charset="UTF-8">
     <title>Course Space</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href=" {%  static 'landing/css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="{%  static 'landing/js/index.js' %}"></script>
 </head>
 <body>
-   <div class="Section" id="section1">
-       <div id="btnSection">
-            <button 
-                id="logIn"
-                onclick="window.location.href = 'login';"
-            >ВХОД</button>
-            <button id="signIn" onclick="window.location.href = '{% url 'registration' %}';">РЕГИСТРАЦИЯ</button>
+   <div class="sec" id="section1">
+       <div class="container">
+           <div class="row justify-content-end mt-2">
+                <button class="col-md-2 me-md-2" id="logIn" onclick="window.location.href = 'login';">ВХОД</button>
+                <button class="col-md-2" id="signIn" onclick="window.location.href = '{% url 'registration' %}';">РЕГИСТРАЦИЯ</button>
+           </div>
+
+           <div class="row">
+
+           </div>
+
+           <div class="row">
+               <div id="btnSpace" class="demo"><a href="#section2"><span></span>заполни свои пробелы</a></div>
+           </div>
        </div>
-       <div id="logo">
-            <div id="C">
-                СOURSE
-            </div>
-            <div id="S">[SPACE] </div>
-       </div>
-       <div id="btnSpace" class="demo">
-            <a href="#section2"><span></span>заполни свои пробелы</a>
-        </div>
    </div>
 
-   <div class="Section" id="section2">
-       <p id="w1">
-            <b>Course Space -</b> </br> 
-            библиотека учебных курсов и самых креативных названий.
-       </p>
-       <p id="w2">
-            Мы твои проводники в мир знаний.
-       </p>
-    </div>
-    
-    <div class="Section" id="section3">
-        <img src="{%  static 'landing/img/3.png' %}" id="img3">
-        <p id="w1">
-            Ты ведь хочешь <b>изменить</b> свою жизнь?
-       </p>
-       <p id="w2">
-            Только представь, сколько новых возможностей тебе откроется с новыми знаниями...
-       </p>
-       <p id="w2">
-        И мы поможем тебе найти тот самый курс, который <b>изменит</b> твою жизнь... 
-       </p>
+   <div class="sec" id="section2">
+       <div class="container">
+           <div class="row">
+               <b>Course Space -</b> </br>
+                библиотека учебных курсов и самых креативных названий.
+           </div>
+           <div class="row">
+               Мы твои проводники в мир знаний.
+           </div>
+       </div>
     </div>
 
-    <div class="Section" id="section4">
-        <img src="{%  static 'landing/img/2.png' %}" id="img2">
-        <p id="w1">
-            Всё начинается с <b>интереса</b>.
-       </p>
-       <p id="w2">
-            Мы учтём твои предпочтения.       
-        </p>
-       <p id="w2">
-            Просто укажи интересующие тебя темы и мы подберём <b>курс твоей мечты</b>.
-        </p>
+    <div class="sec" id="section3">
+        <div class="container">
+           <div class="row">
+                Ты ведь хочешь <b>изменить</b> свою жизнь?
+            </div>
+
+
+            <div class="row">
+                Только представь, сколько новых возможностей тебе откроется с новыми знаниями...
+            </div>
+
+
+            <div class="row">
+                И мы поможем тебе найти тот самый курс, который <b>изменит</b> твою жизнь...
+            </div>
+       </div>
     </div>
 
-    <div class="Section" id="section5">
-       <p id="w4">
-           <b>Начни покорять бескрайний космос знаний прямо сейчас!</b>
-       </p>
-       <div id="button-design">
-            <a onclick="window.location.href =  '{% url 'registration' %}';" class="button2 b-blue rot-135">ПОЕХАЛИ!</a>
-        </div>
-       <p id="w5">
-        <br>
-            Не бойся, это бесплатно. </br>
-            Жми на кнопку.
-       </p>
-       <img src="{%  static 'landing/img/5.png' %}" id="img5">
+    <div class="sec" id="section4">
+        <div class="container">
+           <div class="row">
+                Всё начинается с <b>интереса</b>.
+            </div>
+
+
+            <div class="row">
+                Мы учтём твои предпочтения.
+            </div>
+
+
+            <div class="row">
+                Просто укажи интересующие тебя темы и мы подберём <b>курс твоей мечты</b>.
+            </div>
+       </div>
+    </div>
+
+    <div class="sec" id="section5">
+        <div class="container">
+            <div class="row">
+                <b>Начни покорять бескрайний космос знаний прямо сейчас!</b>
+            </div>
+            <div class="row">
+                <div id="button-design">
+                    <a onclick="window.location.href =  '{% url 'registration' %}';" class="button2 b-blue rot-135">ПОЕХАЛИ!</a>
+                </div>
+            </div>
+            <div class="row">
+                Не бойся, это бесплатно. </br>
+                Жми на кнопку.
+            </div>
+       </div>
     </div>
 
     <div id="board">
@@ -105,5 +118,8 @@
         <div class="line" id="l2"></div>
         <div class="line" id="l3"></div>
    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 </body>
 </html>
