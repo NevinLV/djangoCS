@@ -154,7 +154,7 @@
             {% for author in top_authors %}
                 <div class="authorCard col-md" onclick="window.location.href = '{% url 'user_page' author.pk %}'">
                     <div class="row d-flex justify-content-center">
-                        {% if user.profile.profile_pic %}
+                        {% if author.profile.profile_pic %}
                             <img class="topAuthorAvatarProfile" src="{{author.profile.profile_pic.url}}">
                         {% else %}
                             <img class="topAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
@@ -172,8 +172,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="card block topCourse" id="{{ el.id }}">
                                 <div class="cardHeader">
-                                    <div class="author">
-                                        {% if user.profile.profile_pic %}
+                                    <div class="author" onclick="window.location.href = '{% url 'user_page' el.author.user.pk %}'">
+                                        {% if el.author.user.profile.profile_pic %}
                                           <img class="courseAuthorAvatarProfile" src="{{el.author.user.profile.profile_pic.url}}">
                                         {% else %}
                                           <img class="courseAuthorAvatarProfile" src="{% static 'main/img/user96.png' %}"><br><br>
