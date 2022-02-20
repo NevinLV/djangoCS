@@ -1,0 +1,46 @@
+#signIn, #logIn{
+    border: 1px;
+    border-style: solid;
+}
+
+button{
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 8px 40px;
+    text-align: center;
+    border: none;
+}
+button:hover{
+    background-color: var(--lblack);
+}
+button:active {
+    background-color: black;
+}
+
+#logIn{
+    border-color: var(--white);
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--white);
+}
+
+#logIn:hover{
+    background-color: var(--lblack);
+}
+#logIn:active {
+    background-color: black;
+}
+
+#signIn{
+    border-color: var(--white);
+    background-color: var(--white);
+    color: var(--black);
+}
+
+#signIn:hover{
+    background-color: var(--lgray);
+    border-color: var(--lgray);
+}
+#signIn:active {
+    background-color: black;
+}
