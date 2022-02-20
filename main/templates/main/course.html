@@ -59,11 +59,14 @@
                                   <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                                 </svg>
                                 <div class="usercount">{% for c in count_users %}{% if c.course_id == el.pk %}{{ c.total }}{% endif %}{% endfor %}</div>
-                                {% if user_has_course%}
-                                    <div class="userhascourse" onclick="window.location.href = '{% url 'unsub_course' el.pk  %}'">ОТПИСАТЬСЯ</div>
-                                {% else %}
-                                    <div class="go" onclick="window.location.href = '{% url 'sub_course' el.pk  %}'">ЗАПИСАТЬСЯ</div>
+                                {% if user.is_authenticated %}
+                                    {% if user_has_course%}
+                                        <div class="userhascourse" onclick="window.location.href = '{% url 'unsub_course' el.pk  %}'">ОТПИСАТЬСЯ</div>
+                                    {% else %}
+                                        <div class="go" onclick="window.location.href = '{% url 'sub_course' el.pk  %}'">ЗАПИСАТЬСЯ</div>
+                                    {% endif %}
                                 {% endif %}
+
                             </div>
 
                             <div class="categoryLable">
